@@ -1,7 +1,26 @@
-/**
- * Implement Gatsby's Node APIs in this file.
- *
- * See: https://www.gatsbyjs.com/docs/node-apis/
- */
+/* eslint-disable no-undef */
+// https://randomuser.me/api/
+const fetch = require(`node-fetch`)
 
-// You can delete this file if you're not using it
+exports.sourceNodes = async ({
+  actions: { createNode },
+  createContentDigest,
+}) => {
+  // get random users
+  const fetchRandomUsers = await fetch(
+    `https://randomuser.me/api/?nat=us&results=4`
+  )
+  const users = await fetchRandomUsers.json()
+
+  // create node for random users
+  createNode({
+    random_user: users,
+    id: `random_users`,
+    parent: null,
+    children: [],
+    internal: {
+      type: `RandomUsers`,
+      contentDigest: createContentDigest(users),
+    },
+  })
+}
