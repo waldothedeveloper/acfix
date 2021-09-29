@@ -1,5 +1,5 @@
 import React from "react"
-import { Wizard } from "../components/project-questions-2/wizard"
+import { Wizard } from "../components/project-questions/wizard"
 
 const QuizConversion = () => {
   return <Wizard />

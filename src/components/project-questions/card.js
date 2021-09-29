@@ -1,12 +1,16 @@
 import React from "react"
 
 export const Card = ({
+  completed,
   title,
+  subtitle,
   onChange,
   submit,
   onPrev,
-  wizardCtx,
+  context,
   children,
+  dataMachine,
+  dataState,
 }) => {
   return (
     <form
@@ -22,31 +26,35 @@ export const Card = ({
             <p className="text-2xl font-bold text-blueGray-900">{title}</p>
           </div>
           <div className="flex-1 flex flex-col">
-            <div>
-              <div className="block h-56 overflow-hidden">
-                {React.cloneElement(children, {
-                  send: onChange,
-                  title: title,
-                  wizardCtx: wizardCtx,
-                })}
-              </div>
+            <div className="block h-56 overflow-hidden">
+              {React.cloneElement(children, {
+                send: onChange,
+                title: title,
+                subtitle: subtitle,
+                context: context,
+              })}
             </div>
+
             <div className="mt-4 flex items-center justify-end">
               <div className="flex-shrink-0">
                 {title !== "What type of project is it?" && (
                   <button
                     type="button"
                     onClick={() => onPrev()}
-                    className="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-gray-600 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
+                    className="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-500 hover:bg-red-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
                   >
                     PREV
                   </button>
                 )}
 
                 <button
-                  // disabled={!editing || invalid}
+                  disabled={!completed}
                   type="submit"
-                  className="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-cyan-600 hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500"
+                  className={
+                    completed
+                      ? "ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-cyan-600 hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500"
+                      : "ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400"
+                  }
                 >
                   NEXT
                 </button>
@@ -54,6 +62,14 @@ export const Card = ({
             </div>
           </div>
         </div>
+      </div>
+      <div className="flex m-2 bg-sky-600 rounded-md justify-evenly items-center">
+        <p className="text-sm font-medium text-blueGray-50">
+          Machine: {dataMachine}
+        </p>
+        <p className="text-base font-medium text-blueGray-50">
+          State: <span className="uppercase">{dataState}</span>
+        </p>
       </div>
     </form>
   )

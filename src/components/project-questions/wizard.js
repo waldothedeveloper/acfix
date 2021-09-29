@@ -1,144 +1,181 @@
 import React from "react"
-import { useMachine } from "@xstate/react"
-import { wizardMachine } from "../machines/wizardMachine"
 import Layout from "../layout"
+import { useMachine } from "@xstate/react"
+import { stepMachine } from "../machines/stepMachine"
 import { RadioQuizGroup } from "../quiz-groups/radio-group"
 import { InputGroup } from "../quiz-groups/input-group"
 import { Card } from "./card"
 import { Notes } from "../quiz-groups/notes"
 
 export const Wizard = () => {
-  const [current, send] = useMachine(wizardMachine)
-
-  const wizardCtx = current.context
-  console.log("wizardCtx: ", wizardCtx)
+  const [current, send] = useMachine(stepMachine)
+  const stepContext = current.context
+  console.log("stepMachine Context: ", stepContext)
+  const { completed } = current.context
 
   return (
     <Layout>
-      {current.matches("type_of_project") ? (
+      {current.matches("one") ? (
         <Card
+          dataMachine={stepMachine.id}
+          dataState={current.toStrings().join(" ")}
           title="What type of project is it?"
-          onChange={value => send("CHANGE", { value })}
+          onChange={value => send("CONFIRM_TYPE_OF_PROJECT", { value })}
           submit={value => send("NEXT")}
           onPrev={value => send("PREV")}
-          wizardCtx={wizardCtx}
+          context={stepContext}
+          completed={completed.one}
         >
           <RadioQuizGroup id={0} />
         </Card>
-      ) : current.matches("zipcode") ? (
+      ) : current.matches("two") ? (
         <Card
-          title="Your project's ZIP code?"
+          dataMachine={stepMachine.id}
+          dataState={current.toStrings().join(" ")}
+          title="Let's get you the closest HVAC tech."
+          subtitle="Your project's Zipcode?"
+          onChange={value => send("EDIT_ZIPCODE", { value })}
           submit={value => send("NEXT")}
-          onChange={value => send("CHANGE", { value })}
           onPrev={value => send("PREV")}
-          wizardCtx={wizardCtx}
+          context={stepContext}
+          completed={completed.two}
         >
           <InputGroup
             id={1}
             type="text"
             name="zipcode"
             input_id="zipcode"
-            maxLength={9}
+            maxLength={5}
             placeholder="33015"
           />
         </Card>
-      ) : current.matches("emergency") ? (
+      ) : current.matches("three") ? (
         <Card
+          dataMachine={stepMachine.id}
+          dataState={current.toStrings().join(" ")}
           title="Is this an emergency?"
-          submit={value => send("NEXT", { value })}
+          submit={value => send("NEXT")}
           onChange={value => send("CHANGE", { value })}
           onPrev={value => send("PREV")}
-          wizardCtx={wizardCtx}
+          context={stepContext}
+          completed={completed.three}
         >
           <RadioQuizGroup id={2} />
         </Card>
-      ) : current.matches("nature_of_problem") ? (
+      ) : current.matches("four") ? (
         <Card
+          dataMachine={stepMachine.id}
+          dataState={current.toStrings().join(" ")}
           title="What best describes the nature of the problem?"
-          submit={value => send("NEXT", { value })}
+          submit={value => send("NEXT")}
           onChange={value => send("CHANGE", { value })}
           onPrev={value => send("PREV")}
-          wizardCtx={wizardCtx}
+          context={stepContext}
+          completed={completed.four}
         >
           <RadioQuizGroup id={3} />
         </Card>
-      ) : current.matches("ac_unit_age") ? (
+      ) : current.matches("five") ? (
         <Card
+          dataMachine={stepMachine.id}
+          dataState={current.toStrings().join(" ")}
           title="How old is your current air conditioning system?"
-          submit={value => send("NEXT", { value })}
+          submit={value => send("NEXT")}
           onChange={value => send("CHANGE", { value })}
           onPrev={value => send("PREV")}
-          wizardCtx={wizardCtx}
+          context={stepContext}
+          completed={completed.five}
         >
           <RadioQuizGroup id={4} />
         </Card>
-      ) : current.matches("project_status") ? (
+      ) : current.matches("six") ? (
         <Card
+          dataMachine={stepMachine.id}
+          dataState={current.toStrings().join(" ")}
           title="Choose the appropiate status for your project"
-          submit={value => send("NEXT", { value })}
+          submit={value => send("NEXT")}
           onChange={value => send("CHANGE", { value })}
           onPrev={value => send("PREV")}
-          wizardCtx={wizardCtx}
+          context={stepContext}
+          completed={completed.six}
         >
           <RadioQuizGroup id={5} />
         </Card>
-      ) : current.matches("moving") ? (
+      ) : current.matches("seven") ? (
         <Card
+          dataMachine={stepMachine.id}
+          dataState={current.toStrings().join(" ")}
           title="Are you in the process of moving into or out of this home?"
-          submit={value => send("NEXT", { value })}
+          submit={value => send("NEXT")}
           onChange={value => send("CHANGE", { value })}
           onPrev={value => send("PREV")}
-          wizardCtx={wizardCtx}
+          context={stepContext}
+          completed={completed.seven}
         >
           <RadioQuizGroup id={6} />
         </Card>
-      ) : current.matches("project_deadline") ? (
+      ) : current.matches("eight") ? (
         <Card
+          dataMachine={stepMachine.id}
+          dataState={current.toStrings().join(" ")}
           title="When would you like this request to be completed?"
-          submit={value => send("NEXT", { value })}
+          submit={value => send("NEXT")}
           onChange={value => send("CHANGE", { value })}
           onPrev={value => send("PREV")}
-          wizardCtx={wizardCtx}
+          context={stepContext}
+          completed={completed.eight}
         >
           <RadioQuizGroup id={7} />
         </Card>
-      ) : current.matches("covered_by_insurance") ? (
+      ) : current.matches("nine") ? (
         <Card
+          dataMachine={stepMachine.id}
+          dataState={current.toStrings().join(" ")}
           title="Is this request covered by an insurance claim?"
-          submit={value => send("NEXT", { value })}
+          submit={value => send("NEXT")}
           onChange={value => send("CHANGE", { value })}
           onPrev={value => send("PREV")}
-          wizardCtx={wizardCtx}
+          context={stepContext}
+          completed={completed.nine}
         >
           <RadioQuizGroup id={8} />
         </Card>
-      ) : current.matches("owner_or_authorized_person") ? (
+      ) : current.matches("ten") ? (
         <Card
+          dataMachine={stepMachine.id}
+          dataState={current.toStrings().join(" ")}
           title="Are you the owner or authorized to make property changes?"
-          submit={value => send("NEXT", { value })}
+          submit={value => send("NEXT")}
           onChange={value => send("CHANGE", { value })}
           onPrev={value => send("PREV")}
-          wizardCtx={wizardCtx}
+          context={stepContext}
+          completed={completed.ten}
         >
           <RadioQuizGroup id={9} />
         </Card>
-      ) : current.matches("project_notes") ? (
+      ) : current.matches("eleven") ? (
         <Card
+          dataMachine={stepMachine.id}
+          dataState={current.toStrings().join(" ")}
           title="Please tell us a little about your project"
-          submit={value => send("NEXT", { value })}
+          submit={value => send("NEXT")}
           onChange={value => send("CHANGE", { value })}
           onPrev={value => send("PREV")}
-          wizardCtx={wizardCtx}
+          context={stepContext}
+          completed={completed.eleven}
         >
           <Notes id={10} />
         </Card>
-      ) : current.matches("fullname") ? (
+      ) : current.matches("twelve") ? (
         <Card
+          dataMachine={stepMachine.id}
+          dataState={current.toStrings().join(" ")}
           title="What is your full name?"
-          submit={value => send("NEXT", { value })}
+          submit={value => send("NEXT")}
           onChange={value => send("CHANGE", { value })}
           onPrev={value => send("PREV")}
-          wizardCtx={wizardCtx}
+          context={stepContext}
+          completed={completed.twelve}
         >
           <InputGroup
             id={11}
@@ -149,13 +186,16 @@ export const Wizard = () => {
             placeholder="John Apple"
           />
         </Card>
-      ) : current.matches("phone") ? (
+      ) : current.matches("thirteen") ? (
         <Card
+          dataMachine={stepMachine.id}
+          dataState={current.toStrings().join(" ")}
           title="What is your phone number?"
-          submit={value => send("NEXT", { value })}
+          submit={value => send("NEXT")}
           onChange={value => send("CHANGE", { value })}
           onPrev={value => send("PREV")}
-          wizardCtx={wizardCtx}
+          context={stepContext}
+          completed={completed.thirteen}
         >
           <InputGroup
             id={12}
@@ -166,15 +206,9 @@ export const Wizard = () => {
             placeholder="555-555-5555"
           />
         </Card>
-      ) : current.matches("loading") ? (
-        <strong>Loading...</strong>
-      ) : current.matches("failure") ? (
-        <strong>FAILURE...</strong>
-      ) : current.matches("error") ? (
-        <strong>Error...</strong>
-      ) : current.matches("success") ? (
-        <div>THANK YOU PAGE! </div>
-      ) : null}
+      ) : (
+        current.matches("fourteen") && <div>FINAL STATE, THANK YOU!</div>
+      )}
     </Layout>
   )
 }

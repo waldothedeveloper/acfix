@@ -2,31 +2,30 @@ import React from "react"
 import { RadioOptions } from "./radio-options"
 import { RadioGroup } from "@headlessui/react"
 
-export const RadioQuizGroup = ({ send, title, id, wizardCtx }) => {
-  console.log("id: ", id)
+export const RadioQuizGroup = ({ send, title, id, context }) => {
   return (
     <div className="w-full px-4 py-6">
       <div className="w-full max-w-md mx-auto">
         <RadioGroup
           value={
             id === 0
-              ? wizardCtx.type_of_project
+              ? context.type_of_project
               : id === 2
-              ? wizardCtx.emergency
+              ? context.emergency
               : id === 3
-              ? wizardCtx.nature_of_problem
+              ? context.nature_of_problem
               : id === 4
-              ? wizardCtx.ac_unit_age
+              ? context.ac_unit_age
               : id === 5
-              ? wizardCtx.project_status
+              ? context.project_status
               : id === 6
-              ? wizardCtx.moving
+              ? context.moving
               : id === 7
-              ? wizardCtx.project_deadline
+              ? context.project_deadline
               : id === 8
-              ? wizardCtx.covered_by_insurance
+              ? context.covered_by_insurance
               : id === 9
-              ? wizardCtx.owner_or_authorized_person
+              ? context.owner_or_authorized_person
               : ""
           }
           onChange={val => {

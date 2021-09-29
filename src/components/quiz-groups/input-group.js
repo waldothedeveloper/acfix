@@ -1,71 +1,92 @@
 import React from "react"
+import { BadgeCheckIcon, ExclamationIcon } from "@heroicons/react/solid"
+import { classNames } from "../../utils/classNames"
 
 export const InputGroup = ({
   send,
   title,
+  subtitle,
   id,
   type,
   name,
   input_id,
   maxLength,
   placeholder,
-  wizardCtx,
+  context,
 }) => {
-  console.log("id on Input GRoup", id)
-
+  const { errorMessage } = context
   return (
     <div>
       <label htmlFor="zipcode_from_user" className="sr-only">
         {title}
       </label>
-      <div className="mt-1 relative rounded-md shadow-sm">
+      <div
+        className={classNames(
+          errorMessage && errorMessage.length > 0
+            ? "border border-red-300 rounded-lg px-3 py-2 shadow-sm focus-within:ring-1 focus-within:ring-red-600 focus-within:border-red-600"
+            : context.address
+            ? "border border-gray-300 rounded-lg px-3 py-2 shadow-sm focus-within:ring-1 focus-within:ring-cyan-600 focus-within:border-cyan-600"
+            : "border border-gray-300 rounded-lg px-3 py-2 shadow-sm focus-within:ring-1 focus-within:ring-gray-600 focus-within:border-gray-600",
+          "relative text-left"
+        )}
+      >
+        <label
+          htmlFor={name}
+          className={
+            errorMessage && errorMessage.length > 0
+              ? "block text-sm font-semibold text-red-500"
+              : "block text-sm font-semibold text-cyan-900"
+          }
+        >
+          {subtitle}
+        </label>
         <input
           onChange={event => send(event.target.value)}
           value={
             id === 1
-              ? wizardCtx.zipcode
+              ? context.zipcode
               : id === 11
-              ? wizardCtx.fullname
+              ? context.fullname
               : id === 12
-              ? wizardCtx.phone
+              ? context.phone
               : ""
           }
           type={type}
           name={name}
           maxLength={maxLength}
-          id={input_id}
-          className="block w-full shadow-sm py-3 px-4 placeholder-gray-500 focus:ring-red-500 focus:border-red-500 border-gray-red rounded-md"
           placeholder={placeholder}
           aria-invalid="true"
-          aria-describedby="zipcode-error"
+          id={input_id}
+          className="bg-gray-100 block w-full border-0 p-0 text-gray-800 placeholder-gray-500 focus:ring-0 text-xl"
         />
-        {/* <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
-          {!Object.keys(errors).includes("zipcode_from_user") ? (
+        <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+          {errorMessage && errorMessage.length > 0 ? (
+            <ExclamationIcon
+              className="h-8 w-8 text-red-500"
+              aria-hidden="true"
+            />
+          ) : context.address ? (
             <BadgeCheckIcon
-              className="h-5 w-5 text-teal-500"
+              className="h-8 w-8 text-teal-500"
               aria-hidden="true"
             />
-          ) : (
-            <ExclamationCircleIcon
-              className="h-5 w-5 text-red-500"
-              aria-hidden="true"
-            />
-          )}
-        </div> */}
+          ) : null}
+        </div>
       </div>
-      {/* <p
+      <p
         className={
-          !Object.keys(errors).includes("zipcode_from_user")
-            ? "mt-2 text-sm text-teal-600 text-left pl-1"
-            : "mt-2 text-sm text-red-600 text-left pl-1"
+          errorMessage && errorMessage.length > 0
+            ? "mt-2 text-md text-red-500 text-left pl-1 font-medium"
+            : "mt-2 text-md text-teal-600 text-left pl-1 font-medium"
         }
         id="zipcode-error"
       >
-        {!Object.keys(errors).includes("zipcode_from_user") &&
-        !waitForZipcodeValidation
-          ? responses?.verifiedZipcode?.city
-          : `Please enter a valid ZIP code`}
-      </p> */}
+        {errorMessage && errorMessage.length > 0
+          ? errorMessage
+          : context?.address?.city}
+        {context?.address?.city && `, `}
+        {context?.address?.state}
+      </p>
     </div>
   )
 }
