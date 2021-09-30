@@ -5,6 +5,7 @@ import {
   formatPhoneNumber,
   validatePhoneNumber,
 } from "../../utils/quiz_form_validation"
+import { quiz } from "../project-questions/quiz"
 
 //
 export const stepMachine = createMachine(
@@ -29,21 +30,6 @@ export const stepMachine = createMachine(
       fullname: "",
       phone: "",
       phoneRegex: undefined,
-      completed: {
-        one: false,
-        two: false,
-        three: false,
-        four: false,
-        five: false,
-        six: false,
-        seven: false,
-        eight: false,
-        nine: false,
-        ten: false,
-        eleven: false,
-        twelve: false,
-        thirteen: false,
-      },
     },
     states: {
       //! # 1 type of project
@@ -52,6 +38,7 @@ export const stepMachine = createMachine(
           NEXT: {
             target: "two",
             cond: ctx => {
+              console.log("hitting the next button")
               const typeOfProject = ctx.type_of_project
               return (
                 typeOfProject === "Install a Central Air Conditioning System" ||
@@ -66,10 +53,6 @@ export const stepMachine = createMachine(
                 if (event.type !== "CONFIRM_TYPE_OF_PROJECT") return {}
                 return {
                   type_of_project: event.value,
-                  completed: {
-                    ...context.completed,
-                    one: true,
-                  },
                 }
               }),
             ],
@@ -79,7 +62,7 @@ export const stepMachine = createMachine(
       //! # 2 zipcode
       two: {
         on: {
-          NEXT: "three",
+          NEXT: { target: "three", cond: (ctx, event) => ctx.address },
           PREV: "one",
           //! User can always change zip code in this state
           EDIT_ZIPCODE: {
@@ -155,10 +138,6 @@ export const stepMachine = createMachine(
                 if (event.type !== "CONFIRM_EMERGENCY") return {}
                 return {
                   emergency: event.value,
-                  completed: {
-                    ...context.completed,
-                    three: true,
-                  },
                 }
               }),
             ],
@@ -174,10 +153,6 @@ export const stepMachine = createMachine(
                 if (event.type !== "CONFIRM_PROBLEM_NATURE") return {}
                 return {
                   nature_of_problem: event.value,
-                  completed: {
-                    ...context.completed,
-                    four: true,
-                  },
                 }
               }),
             ],
@@ -185,7 +160,9 @@ export const stepMachine = createMachine(
           NEXT: {
             target: "five",
             cond: ctx => {
-              return ctx.nature_of_problem !== ""
+              return quiz[3].options
+                .map(elem => elem.msg)
+                .includes(ctx.nature_of_problem)
             },
           },
           PREV: "three",
@@ -200,10 +177,6 @@ export const stepMachine = createMachine(
                 if (event.type !== "CHANGE") return {}
                 return {
                   ac_unit_age: event.value,
-                  completed: {
-                    ...context.completed,
-                    five: true,
-                  },
                 }
               }),
             ],
@@ -211,7 +184,9 @@ export const stepMachine = createMachine(
           NEXT: {
             target: "six",
             cond: ctx => {
-              return ctx.ac_unit_age !== ""
+              return quiz[4].options
+                .map(elem => elem.msg)
+                .includes(ctx.ac_unit_age)
             },
           },
           PREV: "four",
@@ -226,10 +201,6 @@ export const stepMachine = createMachine(
                 if (event.type !== "CHANGE") return {}
                 return {
                   project_status: event.value,
-                  completed: {
-                    ...context.completed,
-                    six: true,
-                  },
                 }
               }),
             ],
@@ -237,7 +208,9 @@ export const stepMachine = createMachine(
           NEXT: {
             target: "seven",
             cond: ctx => {
-              return ctx.project_status !== ""
+              return quiz[5].options
+                .map(elem => elem.msg)
+                .includes(ctx.project_status)
             },
           },
           PREV: "five",
@@ -252,10 +225,6 @@ export const stepMachine = createMachine(
                 if (event.type !== "CHANGE") return {}
                 return {
                   moving: event.value,
-                  completed: {
-                    ...context.completed,
-                    seven: true,
-                  },
                 }
               }),
             ],
@@ -263,7 +232,7 @@ export const stepMachine = createMachine(
           NEXT: {
             target: "eight",
             cond: ctx => {
-              return ctx.moving !== ""
+              return quiz[6].options.map(elem => elem.msg).includes(ctx.moving)
             },
           },
           PREV: "six",
@@ -278,10 +247,6 @@ export const stepMachine = createMachine(
                 if (event.type !== "CHANGE") return {}
                 return {
                   project_deadline: event.value,
-                  completed: {
-                    ...context.completed,
-                    eight: true,
-                  },
                 }
               }),
             ],
@@ -289,7 +254,9 @@ export const stepMachine = createMachine(
           NEXT: {
             target: "nine",
             cond: ctx => {
-              return ctx.project_deadline !== ""
+              return quiz[7].options
+                .map(elem => elem.msg)
+                .includes(ctx.project_deadline)
             },
           },
           PREV: "seven",
@@ -304,10 +271,6 @@ export const stepMachine = createMachine(
                 if (event.type !== "CHANGE") return {}
                 return {
                   covered_by_insurance: event.value,
-                  completed: {
-                    ...context.completed,
-                    nine: true,
-                  },
                 }
               }),
             ],
@@ -333,10 +296,6 @@ export const stepMachine = createMachine(
                 if (event.type !== "CHANGE") return {}
                 return {
                   owner_or_authorized_person: event.value,
-                  completed: {
-                    ...context.completed,
-                    ten: true,
-                  },
                 }
               }),
             ],
@@ -362,10 +321,6 @@ export const stepMachine = createMachine(
                 if (event.type !== "CHANGE") return {}
                 return {
                   project_notes: event.value,
-                  completed: {
-                    ...context.completed,
-                    eleven: true,
-                  },
                 }
               }),
             ],
@@ -396,7 +351,6 @@ export const stepMachine = createMachine(
             ],
           },
           completeTask: {
-            entry: ["makeItTrue"],
             on: {
               CHANGE: {
                 actions: ["editFullname"],
@@ -405,7 +359,6 @@ export const stepMachine = createMachine(
             },
           },
           incompleteTask: {
-            entry: ["makeItFalse"],
             on: {
               CHANGE: {
                 actions: ["editFullname"],
@@ -433,7 +386,12 @@ export const stepMachine = createMachine(
           CHANGE: {
             actions: ["editPhoneNumber", "showInvalidPhoneNumberErrorMessage"],
           },
-          NEXT: "fourteen",
+          NEXT: {
+            target: "fourteen",
+            cond: (ctx, event) => {
+              return ctx.phoneRegex
+            },
+          },
           PREV: "twelve",
         },
         initial: "idle",
@@ -445,18 +403,13 @@ export const stepMachine = createMachine(
             },
           },
           validating: {
-            entry: ["makePhoneFalse"],
             always: {
               target: "valid",
               cond: (ctx, event) => validatePhoneNumber(ctx.phone),
             },
           },
           valid: {
-            entry: [
-              "makePhoneTrue",
-              "clearErrorMessage",
-              assign({ phoneRegex: true }),
-            ],
+            entry: ["clearErrorMessage", assign({ phoneRegex: true })],
             on: {
               CHANGE: {
                 target: "idle",
@@ -499,38 +452,7 @@ export const stepMachine = createMachine(
           fullname: event.value,
         }
       }),
-      makePhoneTrue: assign((context, event) => {
-        return {
-          completed: {
-            ...context.completed,
-            thirteen: true,
-          },
-        }
-      }),
-      makePhoneFalse: assign((context, event) => {
-        return {
-          completed: {
-            ...context.completed,
-            thirteen: false,
-          },
-        }
-      }),
-      makeItTrue: assign((context, event) => {
-        return {
-          completed: {
-            ...context.completed,
-            twelve: true,
-          },
-        }
-      }),
-      makeItFalse: assign((context, event) => {
-        return {
-          completed: {
-            ...context.completed,
-            twelve: false,
-          },
-        }
-      }),
+
       clearErrorMessage: assign({
         errorMessage: undefined,
       }),
@@ -560,10 +482,6 @@ export const stepMachine = createMachine(
           zipcode: event.value,
           verifiedAddress: "pending",
           address: undefined,
-          completed: {
-            ...ctx.completed,
-            two: false,
-          },
         }
       }),
       validateZipCodeAndSaveToContext: assign((ctx, event) => {
@@ -574,10 +492,6 @@ export const stepMachine = createMachine(
               city,
               state,
               postal_code,
-            },
-            completed: {
-              ...ctx.completed,
-              two: true,
             },
           }
         }

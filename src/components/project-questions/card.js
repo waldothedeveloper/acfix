@@ -1,10 +1,10 @@
 import React from "react"
 
 export const Card = ({
-  completed,
   title,
   subtitle,
   onChange,
+  state,
   submit,
   onPrev,
   context,
@@ -12,6 +12,9 @@ export const Card = ({
   dataMachine,
   dataState,
 }) => {
+  const allowNext = state.can("NEXT")
+
+  //
   return (
     <form
       onSubmit={evt => {
@@ -48,10 +51,10 @@ export const Card = ({
                 )}
 
                 <button
-                  disabled={!completed}
+                  disabled={!allowNext}
                   type="submit"
                   className={
-                    completed
+                    allowNext
                       ? "ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-cyan-600 hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500"
                       : "ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400"
                   }

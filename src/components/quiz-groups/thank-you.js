@@ -29,33 +29,12 @@ export const ThankYou = () => {
               <div className="mt-12">
                 <Link to="/" className="inline-flex space-x-4">
                   <span className="inline-flex items-center text-sm font-medium text-cyan-600 space-x-1">
-                    <span>Back to Home</span>
+                    <span>Back Home</span>
                     <ChevronRightIcon className="h-5 w-5" aria-hidden="true" />
                   </span>
                 </Link>
               </div>
 
-              {/* <form action="#" className="mt-12 sm:max-w-lg sm:w-full sm:flex">
-                <div className="min-w-0 flex-1">
-                  <label htmlFor="hero-email" className="sr-only">
-                    Email address
-                  </label>
-                  <input
-                    id="hero-email"
-                    type="email"
-                    className="block w-full border border-gray-300 rounded-md px-5 py-3 text-base text-gray-900 placeholder-gray-500 shadow-sm focus:border-cyan-500 focus:ring-cyan-500"
-                    placeholder="Enter your email"
-                  />
-                </div>
-                <div className="mt-4 sm:mt-0 sm:ml-3">
-                  <button
-                    type="submit"
-                    className="block w-full rounded-md border border-transparent px-5 py-3 bg-cyan-600 text-base font-medium text-white shadow hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2 sm:px-10"
-                  >
-                    Notify me
-                  </button>
-                </div>
-              </form> */}
               <div className="mt-6">
                 <div className="inline-flex items-center divide-x divide-gray-300">
                   <div className="flex-shrink-0 flex pr-5">

@@ -11,8 +11,6 @@ import { ThankYou } from "../quiz-groups/thank-you"
 export const Wizard = () => {
   const [current, send] = useMachine(stepMachine)
   const stepContext = current.context
-  console.log("stepContext: ", stepContext)
-  const { completed } = current.context
 
   return (
     <Layout>
@@ -25,7 +23,7 @@ export const Wizard = () => {
           submit={value => send("NEXT")}
           onPrev={value => send("PREV")}
           context={stepContext}
-          completed={completed.one}
+          state={current}
         >
           <RadioQuizGroup id={0} />
         </Card>
@@ -38,8 +36,8 @@ export const Wizard = () => {
           onChange={value => send("EDIT_ZIPCODE", { value })}
           submit={value => send("NEXT")}
           onPrev={value => send("PREV")}
+          state={current}
           context={stepContext}
-          completed={completed.two}
         >
           <InputGroup
             id={1}
@@ -58,8 +56,8 @@ export const Wizard = () => {
           onChange={value => send("CONFIRM_EMERGENCY", { value })}
           submit={value => send("NEXT")}
           onPrev={value => send("PREV")}
+          state={current}
           context={stepContext}
-          completed={completed.three}
         >
           <RadioQuizGroup id={2} />
         </Card>
@@ -71,8 +69,8 @@ export const Wizard = () => {
           submit={value => send("NEXT")}
           onChange={value => send("CONFIRM_PROBLEM_NATURE", { value })}
           onPrev={value => send("PREV")}
+          state={current}
           context={stepContext}
-          completed={completed.four}
         >
           <RadioQuizGroup id={3} />
         </Card>
@@ -84,8 +82,8 @@ export const Wizard = () => {
           submit={value => send("NEXT")}
           onChange={value => send("CHANGE", { value })}
           onPrev={value => send("PREV")}
+          state={current}
           context={stepContext}
-          completed={completed.five}
         >
           <RadioQuizGroup id={4} />
         </Card>
@@ -97,8 +95,8 @@ export const Wizard = () => {
           submit={value => send("NEXT")}
           onChange={value => send("CHANGE", { value })}
           onPrev={value => send("PREV")}
+          state={current}
           context={stepContext}
-          completed={completed.six}
         >
           <RadioQuizGroup id={5} />
         </Card>
@@ -110,8 +108,8 @@ export const Wizard = () => {
           submit={value => send("NEXT")}
           onChange={value => send("CHANGE", { value })}
           onPrev={value => send("PREV")}
+          state={current}
           context={stepContext}
-          completed={completed.seven}
         >
           <RadioQuizGroup id={6} />
         </Card>
@@ -123,8 +121,8 @@ export const Wizard = () => {
           submit={value => send("NEXT")}
           onChange={value => send("CHANGE", { value })}
           onPrev={value => send("PREV")}
+          state={current}
           context={stepContext}
-          completed={completed.eight}
         >
           <RadioQuizGroup id={7} />
         </Card>
@@ -136,8 +134,8 @@ export const Wizard = () => {
           submit={value => send("NEXT")}
           onChange={value => send("CHANGE", { value })}
           onPrev={value => send("PREV")}
+          state={current}
           context={stepContext}
-          completed={completed.nine}
         >
           <RadioQuizGroup id={8} />
         </Card>
@@ -149,8 +147,8 @@ export const Wizard = () => {
           submit={value => send("NEXT")}
           onChange={value => send("CHANGE", { value })}
           onPrev={value => send("PREV")}
+          state={current}
           context={stepContext}
-          completed={completed.ten}
         >
           <RadioQuizGroup id={9} />
         </Card>
@@ -162,8 +160,8 @@ export const Wizard = () => {
           submit={value => send("NEXT")}
           onChange={value => send("CHANGE", { value })}
           onPrev={value => send("PREV")}
+          state={current}
           context={stepContext}
-          completed={completed.eleven}
         >
           <Notes id={10} />
         </Card>
@@ -175,8 +173,8 @@ export const Wizard = () => {
           submit={value => send("NEXT")}
           onChange={value => send("CHANGE", { value })}
           onPrev={value => send("PREV")}
+          state={current}
           context={stepContext}
-          completed={completed.twelve}
         >
           <InputGroup
             id={11}
@@ -196,8 +194,8 @@ export const Wizard = () => {
           submit={value => send("NEXT")}
           onChange={value => send("CHANGE", { value })}
           onPrev={value => send("PREV")}
+          state={current}
           context={stepContext}
-          completed={completed.thirteen}
         >
           <InputGroup
             id={12}
