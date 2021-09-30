@@ -24,10 +24,10 @@ export const InputGroup = ({
         className={classNames(
           errorMessage && errorMessage.length > 0
             ? "border border-red-300 rounded-lg px-3 py-2 shadow-sm focus-within:ring-1 focus-within:ring-red-600 focus-within:border-red-600"
-            : context.address
+            : context.address || context.phoneRegex
             ? "border border-gray-300 rounded-lg px-3 py-2 shadow-sm focus-within:ring-1 focus-within:ring-cyan-600 focus-within:border-cyan-600"
             : "border border-gray-300 rounded-lg px-3 py-2 shadow-sm focus-within:ring-1 focus-within:ring-gray-600 focus-within:border-gray-600",
-          "relative text-left"
+          "relative text-left mt-6"
         )}
       >
         <label
@@ -65,7 +65,7 @@ export const InputGroup = ({
               className="h-8 w-8 text-red-500"
               aria-hidden="true"
             />
-          ) : context.address ? (
+          ) : context.address || context.phoneRegex ? (
             <BadgeCheckIcon
               className="h-8 w-8 text-teal-500"
               aria-hidden="true"

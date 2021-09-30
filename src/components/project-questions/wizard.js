@@ -10,7 +10,6 @@ import { Notes } from "../quiz-groups/notes"
 export const Wizard = () => {
   const [current, send] = useMachine(stepMachine)
   const stepContext = current.context
-  console.log("stepMachine Context: ", stepContext)
   const { completed } = current.context
 
   return (
@@ -54,8 +53,8 @@ export const Wizard = () => {
           dataMachine={stepMachine.id}
           dataState={current.toStrings().join(" ")}
           title="Is this an emergency?"
+          onChange={value => send("CONFIRM_EMERGENCY", { value })}
           submit={value => send("NEXT")}
-          onChange={value => send("CHANGE", { value })}
           onPrev={value => send("PREV")}
           context={stepContext}
           completed={completed.three}
@@ -68,7 +67,7 @@ export const Wizard = () => {
           dataState={current.toStrings().join(" ")}
           title="What best describes the nature of the problem?"
           submit={value => send("NEXT")}
-          onChange={value => send("CHANGE", { value })}
+          onChange={value => send("CONFIRM_PROBLEM_NATURE", { value })}
           onPrev={value => send("PREV")}
           context={stepContext}
           completed={completed.four}
@@ -190,7 +189,8 @@ export const Wizard = () => {
         <Card
           dataMachine={stepMachine.id}
           dataState={current.toStrings().join(" ")}
-          title="What is your phone number?"
+          title="How may we contact you?"
+          subtitle="What is your phone number?"
           submit={value => send("NEXT")}
           onChange={value => send("CHANGE", { value })}
           onPrev={value => send("PREV")}
@@ -202,7 +202,7 @@ export const Wizard = () => {
             type="tel"
             name="tel"
             input_id="tel"
-            maxLength={10}
+            maxLength={12}
             placeholder="555-555-5555"
           />
         </Card>

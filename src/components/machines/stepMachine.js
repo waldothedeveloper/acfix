@@ -1,23 +1,16 @@
 import { createMachine, assign } from "xstate"
-const zipCodeRegex = /^\d{5,6}(?:[-\s]\d{4})?$/
-
-const verifyZipcode = zip => {
-  return fetch(`/api/verify-zipcode?query=${zip}`)
-    .then(res => res.json())
-    .then(data => {
-      return data.results
-    })
-    .catch(err => {
-      console.log("err trying to verify zip code", err)
-      return err
-    })
-}
+import {
+  zipCodeRegex,
+  verifyZipcode,
+  formatPhoneNumber,
+  validatePhoneNumber,
+} from "../../utils/quiz_form_validation"
 
 //
 export const stepMachine = createMachine(
   {
     id: "stepMachine",
-    initial: "one",
+    initial: "thirteen",
     context: {
       errorMessage: "",
       type_of_project: "",
@@ -35,6 +28,7 @@ export const stepMachine = createMachine(
       project_notes: "",
       fullname: "",
       phone: "",
+      phoneRegex: undefined,
       completed: {
         one: false,
         two: false,
@@ -53,7 +47,7 @@ export const stepMachine = createMachine(
       },
     },
     states: {
-      // # 1 type of project
+      //! # 1 type of project
       one: {
         on: {
           NEXT: {
@@ -83,7 +77,7 @@ export const stepMachine = createMachine(
           },
         },
       },
-      // # 2 zipcode
+      //! # 2 zipcode
       two: {
         on: {
           NEXT: "three",
@@ -117,7 +111,14 @@ export const stepMachine = createMachine(
               onError: [{ target: "retry" }],
             },
           },
-          retry: { actions: "assignErrorMessageToContext" },
+          retry: {
+            on: {
+              EDIT_ZIPCODE: {
+                actions: ["assignZipCodeToContext"],
+                target: "pending",
+              },
+            },
+          },
           valid: {
             on: {
               EDIT_ZIPCODE: {
@@ -138,45 +139,399 @@ export const stepMachine = createMachine(
           },
         },
       },
+      // ! # 3 emergency
       three: {
-        on: { NEXT: "four", PREV: "two" },
+        on: {
+          NEXT: {
+            target: "four",
+            cond: ctx => {
+              const emergency = ctx.emergency
+              return emergency === "YES" || emergency === "NO"
+            },
+          },
+          PREV: "two",
+          CONFIRM_EMERGENCY: {
+            actions: [
+              assign((context, event) => {
+                if (event.type !== "CONFIRM_EMERGENCY") return {}
+                return {
+                  emergency: event.value,
+                  completed: {
+                    ...context.completed,
+                    three: true,
+                  },
+                }
+              }),
+            ],
+          },
+        },
       },
+      //! # 4. problem nature
       four: {
-        on: { NEXT: "five", PREV: "three" },
+        on: {
+          CONFIRM_PROBLEM_NATURE: {
+            actions: [
+              assign((context, event) => {
+                if (event.type !== "CONFIRM_PROBLEM_NATURE") return {}
+                return {
+                  nature_of_problem: event.value,
+                  completed: {
+                    ...context.completed,
+                    four: true,
+                  },
+                }
+              }),
+            ],
+          },
+          NEXT: {
+            target: "five",
+            cond: ctx => {
+              return ctx.nature_of_problem !== ""
+            },
+          },
+          PREV: "three",
+        },
       },
+      //! # 5 ac unit age
       five: {
-        on: { NEXT: "six", PREV: "four" },
+        on: {
+          CHANGE: {
+            actions: [
+              assign((context, event) => {
+                if (event.type !== "CHANGE") return {}
+                return {
+                  ac_unit_age: event.value,
+                  completed: {
+                    ...context.completed,
+                    five: true,
+                  },
+                }
+              }),
+            ],
+          },
+          NEXT: {
+            target: "six",
+            cond: ctx => {
+              return ctx.ac_unit_age !== ""
+            },
+          },
+          PREV: "four",
+        },
       },
+      //! # 6. project status
       six: {
-        on: { NEXT: "seven", PREV: "five" },
+        on: {
+          CHANGE: {
+            actions: [
+              assign((context, event) => {
+                if (event.type !== "CHANGE") return {}
+                return {
+                  project_status: event.value,
+                  completed: {
+                    ...context.completed,
+                    six: true,
+                  },
+                }
+              }),
+            ],
+          },
+          NEXT: {
+            target: "seven",
+            cond: ctx => {
+              return ctx.project_status !== ""
+            },
+          },
+          PREV: "five",
+        },
       },
+      //! # 7. moving into or out
       seven: {
-        on: { NEXT: "eight", PREV: "six" },
+        on: {
+          CHANGE: {
+            actions: [
+              assign((context, event) => {
+                if (event.type !== "CHANGE") return {}
+                return {
+                  moving: event.value,
+                  completed: {
+                    ...context.completed,
+                    seven: true,
+                  },
+                }
+              }),
+            ],
+          },
+          NEXT: {
+            target: "eight",
+            cond: ctx => {
+              return ctx.moving !== ""
+            },
+          },
+          PREV: "six",
+        },
       },
+      //! # 8  project_deadline
       eight: {
-        on: { NEXT: "nine", PREV: "seven" },
+        on: {
+          CHANGE: {
+            actions: [
+              assign((context, event) => {
+                if (event.type !== "CHANGE") return {}
+                return {
+                  project_deadline: event.value,
+                  completed: {
+                    ...context.completed,
+                    eight: true,
+                  },
+                }
+              }),
+            ],
+          },
+          NEXT: {
+            target: "nine",
+            cond: ctx => {
+              return ctx.project_deadline !== ""
+            },
+          },
+          PREV: "seven",
+        },
       },
+      //! # 9  covered by insurance
       nine: {
-        on: { NEXT: "ten", PREV: "eight" },
+        on: {
+          CHANGE: {
+            actions: [
+              assign((context, event) => {
+                if (event.type !== "CHANGE") return {}
+                return {
+                  covered_by_insurance: event.value,
+                  completed: {
+                    ...context.completed,
+                    nine: true,
+                  },
+                }
+              }),
+            ],
+          },
+          NEXT: {
+            target: "ten",
+            cond: ctx => {
+              return (
+                ctx.covered_by_insurance === "YES" ||
+                ctx.covered_by_insurance === "NO"
+              )
+            },
+          },
+          PREV: "eight",
+        },
       },
+      //! # 10. owner_or_authorized_person
       ten: {
-        on: { NEXT: "eleven", PREV: "nine" },
+        on: {
+          CHANGE: {
+            actions: [
+              assign((context, event) => {
+                if (event.type !== "CHANGE") return {}
+                return {
+                  owner_or_authorized_person: event.value,
+                  completed: {
+                    ...context.completed,
+                    ten: true,
+                  },
+                }
+              }),
+            ],
+          },
+          NEXT: {
+            target: "eleven",
+            cond: ctx => {
+              return (
+                ctx.owner_or_authorized_person === "YES" ||
+                ctx.owner_or_authorized_person === "NO"
+              )
+            },
+          },
+          PREV: "nine",
+        },
       },
+      //! # 11. project_notes
       eleven: {
-        on: { NEXT: "twelve", PREV: "ten" },
+        on: {
+          CHANGE: {
+            actions: [
+              assign((context, event) => {
+                if (event.type !== "CHANGE") return {}
+                return {
+                  project_notes: event.value,
+                  completed: {
+                    ...context.completed,
+                    eleven: true,
+                  },
+                }
+              }),
+            ],
+          },
+          NEXT: {
+            target: "twelve",
+            cond: ctx => {
+              return ctx.project_notes !== ""
+            },
+          },
+          PREV: "ten",
+        },
       },
+      //! # 12. fullname
       twelve: {
-        on: { NEXT: "thirteen", PREV: "eleven" },
+        initial: "pending",
+        states: {
+          pending: {
+            always: [
+              {
+                target: "completeTask",
+                cond: (ctx, event) => ctx.fullname.length > 0,
+              },
+              {
+                target: "incompleteTask",
+                cond: (ctx, event) => ctx.fullname === "",
+              },
+            ],
+          },
+          completeTask: {
+            entry: ["makeItTrue"],
+            on: {
+              CHANGE: {
+                actions: ["editFullname"],
+                target: "pending",
+              },
+            },
+          },
+          incompleteTask: {
+            entry: ["makeItFalse"],
+            on: {
+              CHANGE: {
+                actions: ["editFullname"],
+                target: "pending",
+              },
+            },
+          },
+        },
+        on: {
+          CHANGE: {
+            actions: ["editFullname"],
+          },
+          NEXT: {
+            target: "thirteen",
+            cond: ctx => {
+              return ctx.fullname !== ""
+            },
+          },
+          PREV: "eleven",
+        },
       },
+      //! # 13. phone number
       thirteen: {
-        on: { NEXT: "fourteen", PREV: "twelve" },
+        on: {
+          CHANGE: {
+            actions: ["editPhoneNumber", "showInvalidPhoneNumberErrorMessage"],
+          },
+          NEXT: "fourteen",
+          PREV: "twelve",
+        },
+        initial: "idle",
+        states: {
+          idle: {
+            always: {
+              target: "validating",
+              cond: (ctx, event) => ctx.phone.length > 2,
+            },
+          },
+          validating: {
+            entry: ["makePhoneFalse"],
+            always: {
+              target: "valid",
+              cond: (ctx, event) => validatePhoneNumber(ctx.phone),
+            },
+          },
+          valid: {
+            entry: [
+              "makePhoneTrue",
+              "clearErrorMessage",
+              assign({ phoneRegex: true }),
+            ],
+            on: {
+              CHANGE: {
+                target: "idle",
+                actions: [
+                  "editPhoneNumber",
+                  "showInvalidPhoneNumberErrorMessage",
+                ],
+              },
+            },
+          },
+        },
       },
-
       fourteen: { type: "final" },
     },
   },
   {
     actions: {
+      showInvalidPhoneNumberErrorMessage: assign((ctx, event) => {
+        return ctx.phone.length > 0
+          ? {
+              phoneRegex: undefined,
+              errorMessage: "Please enter a valid phone number",
+            }
+          : {
+              phoneRegex: undefined,
+              errorMessage: "",
+            }
+      }),
+      editPhoneNumber: assign((context, event) => {
+        if (event.type !== "CHANGE") return {}
+
+        return {
+          phone: formatPhoneNumber(event.value),
+        }
+      }),
+      editFullname: assign((context, event) => {
+        if (event.type !== "CHANGE") return {}
+
+        return {
+          fullname: event.value,
+        }
+      }),
+      makePhoneTrue: assign((context, event) => {
+        return {
+          completed: {
+            ...context.completed,
+            thirteen: true,
+          },
+        }
+      }),
+      makePhoneFalse: assign((context, event) => {
+        return {
+          completed: {
+            ...context.completed,
+            thirteen: false,
+          },
+        }
+      }),
+      makeItTrue: assign((context, event) => {
+        return {
+          completed: {
+            ...context.completed,
+            twelve: true,
+          },
+        }
+      }),
+      makeItFalse: assign((context, event) => {
+        return {
+          completed: {
+            ...context.completed,
+            twelve: false,
+          },
+        }
+      }),
       clearErrorMessage: assign({
         errorMessage: undefined,
       }),
