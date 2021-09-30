@@ -6,10 +6,12 @@ import { RadioQuizGroup } from "../quiz-groups/radio-group"
 import { InputGroup } from "../quiz-groups/input-group"
 import { Card } from "./card"
 import { Notes } from "../quiz-groups/notes"
+import { ThankYou } from "../quiz-groups/thank-you"
 
 export const Wizard = () => {
   const [current, send] = useMachine(stepMachine)
   const stepContext = current.context
+  console.log("stepContext: ", stepContext)
   const { completed } = current.context
 
   return (
@@ -207,7 +209,7 @@ export const Wizard = () => {
           />
         </Card>
       ) : (
-        current.matches("fourteen") && <div>FINAL STATE, THANK YOU!</div>
+        current.matches("fourteen") && <ThankYou />
       )}
     </Layout>
   )

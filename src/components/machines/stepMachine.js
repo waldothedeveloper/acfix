@@ -10,7 +10,7 @@ import {
 export const stepMachine = createMachine(
   {
     id: "stepMachine",
-    initial: "thirteen",
+    initial: "one",
     context: {
       errorMessage: "",
       type_of_project: "",
@@ -43,7 +43,6 @@ export const stepMachine = createMachine(
         eleven: false,
         twelve: false,
         thirteen: false,
-        fourteen: false,
       },
     },
     states: {

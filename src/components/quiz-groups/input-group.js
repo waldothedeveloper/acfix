@@ -1,6 +1,15 @@
 import React from "react"
 import { BadgeCheckIcon, ExclamationIcon } from "@heroicons/react/solid"
 import { classNames } from "../../utils/classNames"
+const errorClass =
+  "border border-red-300 rounded-lg px-3 py-2 shadow-sm focus-within:ring-1 focus-within:ring-red-600 focus-within:border-red-600"
+const successClass =
+  "border border-4 border-cyan-500 rounded-lg px-3 py-2 shadow-sm focus-within:ring-1 focus-within:ring-cyan-600 focus-within:border-cyan-600"
+
+const idleClass =
+  "border border-gray-300 rounded-lg px-3 py-2 shadow-sm focus-within:ring-1 focus-within:ring-gray-600 focus-within:border-gray-600"
+
+// TODO: USE THE ID PROP HERE TO SHOW WHEN VALID ADDRESS SHOULD SHOW, AND REPEAT THE SAME FOR FULL NAME (SO THAT ADDRESS IS NOT SHOWN), AND PHONE NUMBER
 
 export const InputGroup = ({
   send,
@@ -15,6 +24,11 @@ export const InputGroup = ({
   context,
 }) => {
   const { errorMessage } = context
+
+  const zip =
+    id === 1 ? { error: errorMessage, address: context.address } : void 0
+  const phone =
+    id === 12 ? { error: errorMessage, reg: context.phoneRegex } : void 0
   return (
     <div>
       <label htmlFor="zipcode_from_user" className="sr-only">
@@ -22,11 +36,15 @@ export const InputGroup = ({
       </label>
       <div
         className={classNames(
-          errorMessage && errorMessage.length > 0
-            ? "border border-red-300 rounded-lg px-3 py-2 shadow-sm focus-within:ring-1 focus-within:ring-red-600 focus-within:border-red-600"
-            : context.address || context.phoneRegex
-            ? "border border-gray-300 rounded-lg px-3 py-2 shadow-sm focus-within:ring-1 focus-within:ring-cyan-600 focus-within:border-cyan-600"
-            : "border border-gray-300 rounded-lg px-3 py-2 shadow-sm focus-within:ring-1 focus-within:ring-gray-600 focus-within:border-gray-600",
+          zip && zip.error
+            ? errorClass
+            : zip && zip.address
+            ? successClass
+            : phone && phone.error
+            ? errorClass
+            : phone && phone.reg
+            ? successClass
+            : idleClass,
           "relative text-left mt-6"
         )}
       >
@@ -60,33 +78,61 @@ export const InputGroup = ({
           className="bg-gray-100 block w-full border-0 p-0 text-gray-800 placeholder-gray-500 focus:ring-0 text-xl"
         />
         <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
-          {errorMessage && errorMessage.length > 0 ? (
+          {/* error */}
+          {zip && zip.error && (
             <ExclamationIcon
               className="h-8 w-8 text-red-500"
               aria-hidden="true"
             />
-          ) : context.address || context.phoneRegex ? (
+          )}
+          {phone && phone.error && (
+            <ExclamationIcon
+              className="h-8 w-8 text-red-500"
+              aria-hidden="true"
+            />
+          )}
+          {/* success */}
+          {zip && zip.address && (
             <BadgeCheckIcon
               className="h-8 w-8 text-teal-500"
               aria-hidden="true"
             />
-          ) : null}
+          )}
+          {phone && phone.reg && (
+            <BadgeCheckIcon
+              className="h-8 w-8 text-teal-500"
+              aria-hidden="true"
+            />
+          )}
         </div>
       </div>
-      <p
-        className={
-          errorMessage && errorMessage.length > 0
-            ? "mt-2 text-md text-red-500 text-left pl-1 font-medium"
-            : "mt-2 text-md text-teal-600 text-left pl-1 font-medium"
-        }
-        id="zipcode-error"
-      >
-        {errorMessage && errorMessage.length > 0
-          ? errorMessage
-          : context?.address?.city}
-        {context?.address?.city && `, `}
-        {context?.address?.state}
-      </p>
+      {/* error  messages */}
+      {zip && zip.error && (
+        <p
+          className="mt-2 text-md text-red-500 text-left pl-1 font-medium"
+          id="zipcode-error"
+        >
+          {zip.error}
+        </p>
+      )}
+      {phone && phone.error && (
+        <p
+          className="mt-2 text-md text-red-500 text-left pl-1 font-medium"
+          id="zipcode-error"
+        >
+          {phone.error}
+        </p>
+      )}
+
+      {/* success messages */}
+      {zip && zip.address && (
+        <p
+          className="mt-2 text-md text-teal-600 text-left pl-1 font-medium"
+          id="zipcode-error"
+        >
+          {zip.address.city}, {zip.address.state}
+        </p>
+      )}
     </div>
   )
 }
