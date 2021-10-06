@@ -10,7 +10,7 @@ export const Navigation = () => {
   return (
     <header>
       <Popover className="relative bg-white">
-        <div className="flex justify-between items-center max-w-7xl mx-auto px-4 py-6 sm:px-6 md:justify-start md:space-x-10 lg:px-8">
+        <div className="flex justify-between items-center max-w-7xl mx-auto px-4 py-6 sm:px-6 md:space-x-10 lg:px-8">
           <div className="flex justify-start lg:w-0 lg:flex-1">
             <Link
               to="/"
@@ -116,20 +116,6 @@ export const Navigation = () => {
               Company
             </a>
           </Popover.Group>
-          <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
-            <a
-              href="#"
-              className="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900"
-            >
-              Sign in
-            </a>
-            <a
-              href="#"
-              className="ml-8 whitespace-nowrap inline-flex items-center justify-center bg-gradient-to-r from-teal-500 to-cyan-500 bg-origin-border px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white hover:from-teal-600 hover:to-cyan-600"
-            >
-              Sign up
-            </a>
-          </div>
         </div>
 
         <Transition
@@ -213,7 +199,7 @@ export const Navigation = () => {
                     Company
                   </a>
                 </div>
-                <div className="mt-6">
+                {/* <div className="mt-6">
                   <Link
                     to="/"
                     className="w-full flex items-center justify-center bg-gradient-to-r from-teal-500 to-cyan-500 bg-origin-border px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white hover:from-teal-600 hover:to-cyan-600"
@@ -226,7 +212,7 @@ export const Navigation = () => {
                       Sign in
                     </a>
                   </p>
-                </div>
+                </div> */}
               </div>
             </div>
           </Popover.Panel>

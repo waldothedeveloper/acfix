@@ -10,8 +10,11 @@ const Layout = ({ children }) => {
       <Helmet>
         <script src="https://cdn.lordicon.com/libs/mssddfmo/lord-icon-2.1.0.js" />
       </Helmet>
-      <Navigation />
-      <main>{children}</main>
+
+      <main>
+        <Navigation />
+        {children}
+      </main>
     </>
   )
 }

@@ -30,7 +30,7 @@ export const Reviews = () => {
 
   //
   return (
-    <div className="bg-blueGray-100">
+    <div className="bg-blueGray-700 pt-16">
       <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
         <h2 className="sr-only">Customer Reviews</h2>
         <p className="px-8 text-center text-base font-semibold uppercase text-blueGray-700 tracking-wider">

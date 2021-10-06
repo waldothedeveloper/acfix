@@ -13,7 +13,7 @@ export const Notes = ({ send, title, context }) => {
           id="about_project"
           name="about_project"
           rows={3}
-          className="max-w-lg shadow-sm block w-full focus:ring-cyan-500 focus:border-cyan-500 sm:text-sm border border-gray-300 rounded-md"
+          className="block w-full focus:ring-white focus:border-gray-50 sm:text-sm border border-gray-700 rounded-md bg-transparent"
           value={context.project_notes || ""}
           onChange={event => send(event.target.value)}
         />

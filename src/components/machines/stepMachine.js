@@ -38,7 +38,6 @@ export const stepMachine = createMachine(
           NEXT: {
             target: "two",
             cond: ctx => {
-              console.log("hitting the next button")
               const typeOfProject = ctx.type_of_project
               return (
                 typeOfProject === "Install a Central Air Conditioning System" ||
@@ -327,9 +326,6 @@ export const stepMachine = createMachine(
           },
           NEXT: {
             target: "twelve",
-            cond: ctx => {
-              return ctx.project_notes !== ""
-            },
           },
           PREV: "ten",
         },

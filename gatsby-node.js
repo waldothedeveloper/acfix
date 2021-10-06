@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 // https://randomuser.me/api/
 const fetch = require(`node-fetch`)
 

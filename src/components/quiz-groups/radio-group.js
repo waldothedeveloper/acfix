@@ -1,6 +1,7 @@
 import React from "react"
 import { RadioOptions } from "./radio-options"
 import { RadioGroup } from "@headlessui/react"
+import "../../styles/scroll.css"
 
 export const RadioQuizGroup = ({ send, title, id, context }) => {
   return (
@@ -33,7 +34,7 @@ export const RadioQuizGroup = ({ send, title, id, context }) => {
           }}
         >
           <RadioGroup.Label className="sr-only">{title}</RadioGroup.Label>
-          <div className="space-y-2 h-56 overflow-y-auto overflow-x-hidden pt-3 pb-8 px-3">
+          <div className="scrollbar space-y-2 h-56 overflow-y-auto overflow-x-hidden pt-3 pb-8 px-3">
             <RadioOptions id={id} />
           </div>
         </RadioGroup>

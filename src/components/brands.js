@@ -7,7 +7,7 @@ export const Brands = () => {
     <div className="bg-blueGray-700">
       <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
         <p className="text-center text-base font-semibold uppercase text-blueGray-50 tracking-wider">
-          Trusted by over 5 very average small businesses
+          We proudly serve a wide variety of brands.
         </p>
         <div className="mt-6 grid grid-cols-1 gap-0.5 md:grid-cols-3 lg:mt-8">
           <div className="col-span-1 flex justify-center py-8 px-8">

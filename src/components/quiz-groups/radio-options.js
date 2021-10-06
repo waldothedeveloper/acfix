@@ -12,10 +12,10 @@ export const RadioOptions = ({ id }) => {
       className={({ active, checked }) =>
         `${
           active
-            ? "ring-2 ring-offset-2 ring-offset-cyan-300 ring-white ring-opacity-60"
+            ? "ring-2 ring-offset-2 ring-offset-cyan-800 ring-white ring-opacity-60"
             : ""
         }
-          ${checked ? "bg-cyan-900 bg-opacity-75 text-white" : "bg-white"}
+          ${checked ? "bg-cyan-600 text-white" : "bg-transparent"}
                     relative rounded-lg shadow-md px-5 py-4 cursor-pointer flex focus:outline-none`
       }
     >

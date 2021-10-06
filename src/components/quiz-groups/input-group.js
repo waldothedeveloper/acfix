@@ -7,7 +7,7 @@ const successClass =
   "border border-4 border-cyan-500 rounded-lg px-3 py-2 shadow-sm focus-within:ring-1 focus-within:ring-cyan-600 focus-within:border-cyan-600"
 
 const idleClass =
-  "border border-gray-300 rounded-lg px-3 py-2 shadow-sm focus-within:ring-1 focus-within:ring-gray-600 focus-within:border-gray-600"
+  "border border-gray-700 rounded-lg px-3 py-2 shadow-sm focus-within:ring-1 focus-within:ring-gray-600 focus-within:border-gray-600"
 
 // TODO: USE THE ID PROP HERE TO SHOW WHEN VALID ADDRESS SHOULD SHOW, AND REPEAT THE SAME FOR FULL NAME (SO THAT ADDRESS IS NOT SHOWN), AND PHONE NUMBER
 
@@ -53,7 +53,7 @@ export const InputGroup = ({
           className={
             errorMessage && errorMessage.length > 0
               ? "block text-sm font-semibold text-red-500"
-              : "block text-sm font-semibold text-cyan-900"
+              : "block text-sm font-semibold text-gray-800"
           }
         >
           {subtitle}
@@ -75,7 +75,7 @@ export const InputGroup = ({
           placeholder={placeholder}
           aria-invalid="true"
           id={input_id}
-          className="bg-gray-100 block w-full border-0 p-0 text-gray-800 placeholder-gray-500 focus:ring-0 text-xl"
+          className="bg-transparent block w-full border-0 p-0 text-gray-800 focus:ring-0 text-xl"
         />
         <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
           {/* error */}
@@ -94,13 +94,13 @@ export const InputGroup = ({
           {/* success */}
           {zip && zip.address && (
             <BadgeCheckIcon
-              className="h-8 w-8 text-teal-500"
+              className="h-8 w-8 text-cyan-700"
               aria-hidden="true"
             />
           )}
           {phone && phone.reg && (
             <BadgeCheckIcon
-              className="h-8 w-8 text-teal-500"
+              className="h-8 w-8 text-cyan-700"
               aria-hidden="true"
             />
           )}
@@ -127,7 +127,7 @@ export const InputGroup = ({
       {/* success messages */}
       {zip && zip.address && (
         <p
-          className="mt-2 text-md text-teal-600 text-left pl-1 font-medium"
+          className="mt-2 text-md text-cyan-700 text-left pl-1 font-medium"
           id="zipcode-error"
         >
           {zip.address.city}, {zip.address.state}
