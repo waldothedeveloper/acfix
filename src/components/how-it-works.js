@@ -1,6 +1,6 @@
 import React from "react"
 import { Link } from "gatsby"
-import bgSVG from "../images/blob-scene-haikei.svg"
+// import bgSVG from "../images/blob-scene-haikei.svg"
 
 const attentionGrabber =
   "font-bold bg-gradient-to-r from-orange-400 to-rose-400 bg-clip-text text-transparent"
@@ -66,14 +66,15 @@ const incentives = [
 export const HowItWorks = () => {
   return (
     <div
-      className="bg-cover bg-no-repeat"
-      style={{ backgroundImage: `url(${bgSVG})` }}
+      className="bg-blueGray-700"
+      // className="bg-cover bg-no-repeat"
+      // style={{ backgroundImage: `url(${bgSVG})` }}
     >
       <div className="max-w-7xl mx-auto py-12 sm:px-2 lg:px-4">
         <div className="max-w-2xl mx-auto px-4 lg:max-w-none rounded-lg">
           <div className="max-w-3xl">
-            <h2 className="inline-flex mt-2 text-sm tracking-wide uppercase border-b border-gray-600 text-blueGray-800">
-              Big or small, we can help
+            <h2 className="inline-flex mt-2 text-sm tracking-wide uppercase border-b border-cyan-500 bg-gradient-to-r from-teal-300 to-cyan-400 bg-clip-text text-transparent">
+              Big or small projects, we can help
             </h2>
             <h2 className="mt-4 text-4xl font-extrabold tracking-tight text-gray-50">
               How it works

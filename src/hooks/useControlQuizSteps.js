@@ -3,11 +3,9 @@ import { quiz } from "../components/project-questions-2/quiz"
 
 export const useControlQuizSteps = quizValidate => {
   const [activeStep, setActiveStep] = useState(0)
-  // console.log("activeStep: ", activeStep)
   const [responses, setResponses] = useState({})
-  console.log("responses: ", responses)
   const [errors, setErrors] = useState({})
-  console.log("errors: ", errors)
+
   const [waitForZipcodeValidation, setWaitForZipcodeValidation] =
     useState(false)
 
@@ -50,7 +48,7 @@ export const useControlQuizSteps = quizValidate => {
           }
         })
         .catch(err => {
-          console.log("err trying to verify zip code", err)
+          // console.log("err trying to verify zip code", err)
           setWaitForZipcodeValidation(false)
         })
     }

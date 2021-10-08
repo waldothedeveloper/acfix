@@ -4,11 +4,8 @@ import { GatsbyImage } from "gatsby-plugin-image"
 import { Link } from "gatsby"
 //
 
-//
-
 export const HvacCategories = () => {
   const popularServices = usePopularServices()
-  // console.log("popularServices: ", popularServices)
 
   //
   return (
