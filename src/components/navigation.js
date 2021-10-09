@@ -10,7 +10,7 @@ export const Navigation = () => {
   return (
     <header>
       <Popover className="relative bg-white">
-        <div className="flex justify-between items-center max-w-7xl mx-auto px-4 py-6 sm:px-6 md:space-x-10 lg:px-8">
+        <div className="flex justify-between items-center max-w-7xl mx-auto px-4 py-6 sm:px-6 md:space-x-10 lg:px-8 md:bg-blueGray-800 rounded-b-3xl">
           <div className="flex justify-start lg:w-0 lg:flex-1">
             <Link
               to="/"
@@ -20,8 +20,8 @@ export const Navigation = () => {
                 className="h-8 w-auto sm:h-10"
                 src="https://cdn.lordicon.com/kjmnoemj.json"
                 trigger="loop"
-                colors="primary:#121331,secondary:#06b6d4"
-                stroke="75"
+                colors="primary:#06b6d4,secondary:#06b6d4"
+                stroke="100"
               />
               <span className="sr-only">ACFIX.TODAY</span>
               <span className="text-base font-extrabold bg-gradient-to-r from-teal-500 to-cyan-500 bg-clip-text text-transparent">
@@ -30,7 +30,7 @@ export const Navigation = () => {
             </Link>
           </div>
           <div className="-mr-2 -my-2 md:hidden">
-            <Popover.Button className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-cyan-500">
+            <Popover.Button className="bg-blueGray-800 rounded-md p-2 inline-flex items-center justify-center text-gray-50 hover:text-gray-200 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
               <span className="sr-only">Open menu</span>
               <MenuIcon className="h-6 w-6" aria-hidden="true" />
             </Popover.Button>
@@ -41,8 +41,8 @@ export const Navigation = () => {
                 <>
                   <Popover.Button
                     className={classNames(
-                      open ? "text-gray-900" : "text-gray-500",
-                      "group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500"
+                      open ? "text-gray-200" : "text-gray-50",
+                      "group bg-blueGray-800 rounded-md inline-flex items-center text-base font-medium hover:text-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white"
                     )}
                   >
                     <span>Solutions</span>
@@ -97,24 +97,24 @@ export const Navigation = () => {
               )}
             </Popover>
 
-            <a
-              href="#"
-              className="text-base font-medium text-gray-500 hover:text-gray-900"
+            <Link
+              to="/"
+              className="text-base font-medium text-gray-50 hover:text-gray-200"
             >
               Pricing
-            </a>
-            <a
-              href="#"
-              className="text-base font-medium text-gray-500 hover:text-gray-900"
+            </Link>
+            <Link
+              to="/"
+              className="text-base font-medium text-gray-50 hover:text-gray-200"
             >
-              Partners
-            </a>
-            <a
-              href="#"
-              className="text-base font-medium text-gray-500 hover:text-gray-900"
+              Blog
+            </Link>
+            <Link
+              to="/"
+              className="text-base font-medium text-gray-50 hover:text-gray-200"
             >
-              Company
-            </a>
+              Contact
+            </Link>
           </Popover.Group>
         </div>
 
@@ -153,7 +153,7 @@ export const Navigation = () => {
                   </Link>
 
                   <div className="-mr-2">
-                    <Popover.Button className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-cyan-500">
+                    <Popover.Button className="bg-blueGray-800 rounded-md p-2 inline-flex items-center justify-center text-gray-50 hover:text-gray-200 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-cyan-500">
                       <span className="sr-only">Close menu</span>
                       <XIcon className="h-6 w-6" aria-hidden="true" />
                     </Popover.Button>
@@ -180,39 +180,25 @@ export const Navigation = () => {
               </div>
               <div className="py-6 px-5">
                 <div className="grid grid-cols-2 gap-4">
-                  <a
-                    href="#"
+                  <Link
+                    to="/"
                     className="text-base font-medium text-gray-900 hover:text-gray-700"
                   >
                     Pricing
-                  </a>
-                  <a
-                    href="#"
-                    className="text-base font-medium text-gray-900 hover:text-gray-700"
-                  >
-                    Partners
-                  </a>
-                  <a
-                    href="#"
-                    className="text-base font-medium text-gray-900 hover:text-gray-700"
-                  >
-                    Company
-                  </a>
-                </div>
-                {/* <div className="mt-6">
+                  </Link>
                   <Link
                     to="/"
-                    className="w-full flex items-center justify-center bg-gradient-to-r from-teal-500 to-cyan-500 bg-origin-border px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white hover:from-teal-600 hover:to-cyan-600"
+                    className="text-base font-medium text-gray-900 hover:text-gray-700"
                   >
-                    Sign up
+                    Blog
                   </Link>
-                  <p className="mt-6 text-center text-base font-medium text-gray-500">
-                    Existing customer?
-                    <a href="#" className="text-gray-900">
-                      Sign in
-                    </a>
-                  </p>
-                </div> */}
+                  <Link
+                    to="/"
+                    className="text-base font-medium text-gray-900 hover:text-gray-700"
+                  >
+                    Contact
+                  </Link>
+                </div>
               </div>
             </div>
           </Popover.Panel>

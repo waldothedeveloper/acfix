@@ -1,5 +1,5 @@
 import React from "react"
-import bgSVG2 from "../../images/blob-haikei.svg"
+import bgSVG2 from "../../images/blob-scene-haikei.svg"
 export const Card = ({
   title,
   subtitle,

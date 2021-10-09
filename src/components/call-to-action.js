@@ -1,12 +1,9 @@
 import React from "react"
 import { Link } from "gatsby"
-// import blob from "../images/blob-cta.svg"
+
 export const CallToAction = () => {
   return (
-    <div
-    // style={{ backgroundImage: `url(${blob})` }}
-    // className="object-cover object-center w-full h-full rounded-lg"
-    >
+    <div>
       <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 md:py-16 lg:px-8 lg:py-32">
         <h2 className="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
           <span className="block">Savings & Comfort are hard to come by.</span>
