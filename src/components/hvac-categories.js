@@ -13,7 +13,7 @@ export const HvacCategories = () => {
       <div className="py-16 sm:py-24 xl:max-w-7xl xl:mx-auto xl:px-8">
         <div className="px-4 sm:px-6 sm:flex sm:items-center sm:justify-between lg:px-8 xl:px-0">
           <h2 className="text-2xl font-extrabold tracking-tight text-gray-900">
-            Our HVAC Partners&apos; Most Popular Services
+            Our AC Partners&apos; Most Popular Services
           </h2>
           <Link
             to="/"
@@ -28,7 +28,8 @@ export const HvacCategories = () => {
             <div className="box-content py-2 relative h-80 overflow-x-auto xl:overflow-visible">
               <div className="absolute min-w-screen-xl px-4 flex space-x-8 sm:px-6 lg:px-8 xl:relative xl:px-0 xl:space-x-0 xl:grid xl:grid-cols-3 xl:gap-x-8">
                 {popularServices.map(service => (
-                  <div
+                  <Link
+                    to="/quiz-conversion"
                     key={service.node.id}
                     className="relative w-56 h-80 rounded-lg p-6 lg:mb-3 flex flex-col overflow-hidden hover:opacity-75 xl:w-auto"
                   >
@@ -46,7 +47,7 @@ export const HvacCategories = () => {
                     <span className="relative mt-auto text-center text-xl font-bold text-white">
                       {service.node.name}
                     </span>
-                  </div>
+                  </Link>
                 ))}
               </div>
             </div>

@@ -2,6 +2,7 @@ import * as React from "react"
 import PropTypes from "prop-types"
 import { Navigation } from "./navigation"
 import { Helmet } from "react-helmet"
+import { Footer } from "./footer"
 
 //
 const Layout = ({ children }) => {
@@ -21,6 +22,7 @@ const Layout = ({ children }) => {
       <main>
         <Navigation />
         {children}
+        <Footer />
       </main>
     </>
   )

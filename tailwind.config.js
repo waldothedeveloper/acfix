@@ -7,14 +7,20 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
+      animation: {
+        wiggle: "wiggle 4s ease-in-out infinite",
+      },
+      keyframes: {
+        wiggle: {
+          "0%, 100%": { transform: "rotate(-13deg)" },
+          "50%": { transform: "rotate(3deg)" },
+        },
+      },
       zIndex: {
         "-1": "-1",
       },
       fontFamily: {
         sans: ["Inter", ...defaultTheme.fontFamily.sans],
-      },
-      backgroundImage: {
-        texture: "url('/src/images/test.jpeg')",
       },
       colors: colors,
     },

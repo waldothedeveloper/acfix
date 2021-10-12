@@ -1,19 +1,14 @@
 import React from "react"
-import Layout from "../layout"
-import { useMachine } from "@xstate/react"
-import { stepMachine } from "../machines/stepMachine"
 import { RadioQuizGroup } from "../quiz-groups/radio-group"
 import { InputGroup } from "../quiz-groups/input-group"
 import { Card } from "./card"
 import { Notes } from "../quiz-groups/notes"
-import { ThankYou } from "../quiz-groups/thank-you"
 
-export const Wizard = () => {
-  const [current, send] = useMachine(stepMachine)
+export const Wizard = ({ current, send, stepMachine }) => {
   const stepContext = current.context
 
   return (
-    <Layout>
+    <>
       {current.matches("one") ? (
         <Card
           dataMachine={stepMachine.id}
@@ -206,9 +201,7 @@ export const Wizard = () => {
             placeholder="555-555-5555"
           />
         </Card>
-      ) : (
-        current.matches("fourteen") && <ThankYou />
-      )}
-    </Layout>
+      ) : null}
+    </>
   )
 }

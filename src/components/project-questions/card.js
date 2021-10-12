@@ -1,5 +1,6 @@
 import React from "react"
-import bgSVG2 from "../../images/blob-scene-haikei.svg"
+
+//
 export const Card = ({
   title,
   subtitle,
@@ -16,10 +17,7 @@ export const Card = ({
 
   //
   return (
-    <div
-      className="bg-cover bg-no-repeat"
-      style={{ backgroundImage: `url(${bgSVG2})` }}
-    >
+    <div>
       <form
         className="w-full"
         onSubmit={evt => {
@@ -27,8 +25,8 @@ export const Card = ({
           submit()
         }}
       >
-        <div className="max-w-none md:max-w-3xl mx-auto text-center py-16 px-4 sm:py-20 sm:px-6 lg:px-8">
-          <div className="w-full flex flex-col rounded-lg overflow-hidden px-2 md:px-16 py-8 backdrop-filter backdrop-blur-lg bg-white bg-opacity-50">
+        <div className="max-w-none md:max-w-3xl mx-auto text-center">
+          <div className="w-full flex flex-col rounded-xl overflow-hidden px-4 md:px-16 py-8 backdrop-filter backdrop-blur-lg bg-white bg-opacity-75">
             <div className="h-16 flex-shrink-0">
               <p className="text-2xl font-bold text-blueGray-900">{title}</p>
             </div>
@@ -60,7 +58,7 @@ export const Card = ({
                     className={
                       allowNext
                         ? "ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-cyan-600 hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500"
-                        : "ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-transparent focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400"
+                        : "ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-gray-50 bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400"
                     }
                   >
                     NEXT

@@ -53,24 +53,27 @@ export const Hero = () => {
                   </a>
                 </div>
                 <div className="mt-6 sm:max-w-xl relative z-10">
-                  <div className="absolute -top-10 left-8 -z-1">
-                    {/* yellow blob */}
-                    <svg
-                      id="visual"
-                      viewBox="0 0 900 900"
-                      width="150"
-                      height="250"
-                      xmlns="http://www.w3.org/2000/svg"
-                      version="1.1"
-                    >
-                      <g transform="translate(515.3464575876709 432.1677388217141)">
-                        <path
-                          d="M183.2 -204.5C220.7 -145.7 222.8 -72.8 239.3 16.5C255.8 105.8 286.7 211.7 249.2 277.8C211.7 344 105.8 370.5 7.2 363.3C-91.5 356.1 -182.9 315.2 -257.9 249.1C-332.9 182.9 -391.5 91.5 -397.2 -5.8C-403 -103 -356 -206 -281 -264.8C-206 -323.7 -103 -338.3 -15.1 -323.3C72.8 -308.2 145.7 -263.3 183.2 -204.5"
-                          fill="#FEF9C3"
-                        ></path>
-                      </g>
-                    </svg>
+                  <div className="relative animate-wiggle -z-1">
+                    <div className="absolute -top-10 left-8">
+                      {/* yellow blob */}
+                      <svg
+                        id="visual"
+                        viewBox="0 0 900 900"
+                        width="150"
+                        height="250"
+                        xmlns="http://www.w3.org/2000/svg"
+                        version="1.1"
+                      >
+                        <g transform="translate(515.3464575876709 432.1677388217141)">
+                          <path
+                            d="M183.2 -204.5C220.7 -145.7 222.8 -72.8 239.3 16.5C255.8 105.8 286.7 211.7 249.2 277.8C211.7 344 105.8 370.5 7.2 363.3C-91.5 356.1 -182.9 315.2 -257.9 249.1C-332.9 182.9 -391.5 91.5 -397.2 -5.8C-403 -103 -356 -206 -281 -264.8C-206 -323.7 -103 -338.3 -15.1 -323.3C72.8 -308.2 145.7 -263.3 183.2 -204.5"
+                            fill="#FEF9C3"
+                          ></path>
+                        </g>
+                      </svg>
+                    </div>
                   </div>
+
                   <h1 className="text-4xl font-extrabold text-blueGray-900 tracking-tight sm:text-5xl">
                     {data.heroTitle}
 
@@ -92,20 +95,8 @@ export const Hero = () => {
           <div className="sm:mx-auto sm:max-w-3xl sm:px-6">
             <div className="py-12 sm:relative sm:mt-12 sm:py-16 lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
               <div className="hidden sm:block">
+                {/* little cyan background behind image */}
                 <div className="absolute inset-y-0 left-1/2 w-screen bg-cyan-50 rounded-l-3xl lg:left-80 lg:right-0 lg:w-full" />
-                {/* DO YOU LIKE THIS INSTEAD -> background image behind the ac guy repairing ac unit */}
-                {/* <StaticImage
-                  className="absolute inset-y-0 left-1/2 w-screen rounded-l-3xl lg:left-80 lg:right-0 lg:w-full"
-                  imgStyle={{
-                    height: "100%",
-                    width: "100%",
-                  }}
-                  src="../images/abs-patt-5.jpeg"
-                  alt="artic pattern"
-                  placeholder="blurred"
-                  layout="fullWidth"
-                  transformOptions={{ fit: "cover" }}
-                /> */}
 
                 <svg
                   className="absolute top-8 right-1/2 -mr-3 lg:m-0 lg:left-0"
@@ -148,7 +139,7 @@ export const Hero = () => {
                     height: "100%",
                     width: "100%",
                   }}
-                  src="../images/young-ac-repair-guy-hero-minified.jpg"
+                  src="../../images/young-ac-repair-guy-hero-minified.jpg"
                   alt="young ac fix certified technician inspecting an ac unit"
                   placeholder="blurred"
                   layout="fullWidth"

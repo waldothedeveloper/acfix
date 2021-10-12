@@ -1,8 +1,8 @@
 import React from "react"
-import { Wizard } from "../components/project-questions/wizard"
+import { WizardWrapper } from "../components/project-questions/wizard-wrapper"
 
 const QuizConversion = () => {
-  return <Wizard />
+  return <WizardWrapper />
 }
 
 export default QuizConversion
