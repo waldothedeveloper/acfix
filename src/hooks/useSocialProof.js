@@ -7,14 +7,8 @@ export const useSocialProof = () => {
         edges {
           node {
             name
-            childImageSharp {
-              gatsbyImageData(
-                formats: AUTO
-                placeholder: BLURRED
-                layout: FULL_WIDTH
-              )
-            }
             id
+            publicURL
           }
         }
       }

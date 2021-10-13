@@ -13,7 +13,7 @@ export const Brands = () => {
           <div className="col-span-1 flex justify-center py-8 px-8">
             <StaticImage
               className="max-h-24"
-              src="../images/rheem.png"
+              src="../images/ac-brands/rheem.png"
               alt="rheem"
               placeholder="blurred"
               layout="constrained"
@@ -22,7 +22,7 @@ export const Brands = () => {
           <div className="col-span-1 flex justify-center py-8 px-8">
             <StaticImage
               className="max-h-24"
-              src="../images/trane.png"
+              src="../images/ac-brands/trane.png"
               alt="rheem"
               placeholder="blurred"
               layout="constrained"
@@ -31,7 +31,7 @@ export const Brands = () => {
           <div className="col-span-1 flex justify-center py-8 px-8">
             <StaticImage
               className="max-h-24"
-              src="../images/carrier.png"
+              src="../images/ac-brands/carrier.png"
               alt="rheem"
               placeholder="blurred"
               layout="constrained"

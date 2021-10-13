@@ -1,10 +1,10 @@
 import React from "react"
-import { usePopularServices } from "../hooks/usePopularServices"
+import { usePopularServices } from "../../hooks/usePopularServices"
 import { GatsbyImage } from "gatsby-plugin-image"
 import { Link } from "gatsby"
-//
 
 export const HvacCategories = () => {
+  //
   const popularServices = usePopularServices()
 
   //
@@ -16,7 +16,7 @@ export const HvacCategories = () => {
             Our AC Partners&apos; Most Popular Services
           </h2>
           <Link
-            to="/"
+            to="/all-services"
             className="hidden text-sm font-semibold text-cyan-600 hover:text-cyan-500 sm:block"
           >
             Browse all services<span aria-hidden="true"> &rarr;</span>
@@ -56,7 +56,7 @@ export const HvacCategories = () => {
 
         <div className="mt-6 px-4 sm:hidden">
           <Link
-            to="/"
+            to="/all-services"
             className="block text-sm font-semibold text-cyan-600 hover:text-cyan-500"
           >
             Browse all services<span aria-hidden="true"> &rarr;</span>

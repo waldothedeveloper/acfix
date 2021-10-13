@@ -39,7 +39,7 @@ const cardDetails = [
   },
   {
     id: 3,
-    unit: "76%",
+    unit: "96%",
     description: "Same Day Repairs",
     ping_full:
       "animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75",

@@ -18,21 +18,12 @@ export const LogoClouds = () => {
               className="col-span-1 flex justify-center md:col-span-2"
             >
               <GatsbyImage
-                image={logo.node.childImageSharp.gatsbyImageData}
+                image={logo.node.publicURL}
                 alt="featured AC FIX customer"
                 className="object-center object-cover"
               />
             </div>
           ))}
-
-          {/*         
-          <div className="col-span-1 flex justify-center md:col-span-3 lg:col-span-1">
-            <img
-              className="h-12"
-              src="https://tailwindui.com/img/logos/transistor-logo-gray-400.svg"
-              alt="Transistor"
-            />
-          </div> */}
         </div>
       </div>
     </div>
