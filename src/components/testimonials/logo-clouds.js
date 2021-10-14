@@ -5,7 +5,6 @@ import { GatsbyImage } from "gatsby-plugin-image"
 //
 export const LogoClouds = () => {
   const socialProof = useSocialProof()
-  
 
   //
   return (
