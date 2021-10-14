@@ -16,8 +16,8 @@ export const stepMachine = createMachine(
       errorMessage: "",
       type_of_project: "",
       zipcode: "",
-      verifiedAddress: undefined,
-      address: undefined,
+      verifiedAddress: void 0,
+      address: void 0,
       emergency: "",
       nature_of_problem: "",
       ac_unit_age: "",
@@ -29,7 +29,7 @@ export const stepMachine = createMachine(
       project_notes: "",
       fullname: "",
       phone: "",
-      phoneRegex: undefined,
+      phoneRegex: void 0,
     },
     states: {
       //! # 1 type of project
@@ -426,11 +426,11 @@ export const stepMachine = createMachine(
       showInvalidPhoneNumberErrorMessage: assign((ctx, event) => {
         return ctx.phone.length > 0
           ? {
-              phoneRegex: undefined,
+              phoneRegex: void 0,
               errorMessage: "Please enter a valid phone number",
             }
           : {
-              phoneRegex: undefined,
+              phoneRegex: void 0,
               errorMessage: "",
             }
       }),
@@ -450,7 +450,7 @@ export const stepMachine = createMachine(
       }),
 
       clearErrorMessage: assign({
-        errorMessage: undefined,
+        errorMessage: void 0,
       }),
       assignErrorMessageToContext: assign((context, event) => {
         let _a
@@ -476,7 +476,7 @@ export const stepMachine = createMachine(
         return {
           zipcode: event.value,
           verifiedAddress: "pending",
-          address: undefined,
+          address: void 0,
         }
       }),
       validateZipCodeAndSaveToContext: assign((ctx, event) => {
