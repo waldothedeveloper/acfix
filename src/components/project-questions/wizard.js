@@ -3,6 +3,7 @@ import { RadioQuizGroup } from "../quiz-groups/radio-group"
 import { InputGroup } from "../quiz-groups/input-group"
 import { Card } from "./card"
 import { Notes } from "../quiz-groups/notes"
+import PropTypes from "prop-types"
 
 export const Wizard = ({ current, send, stepMachine, handleSubmit }) => {
   const stepContext = current.context
@@ -207,4 +208,11 @@ export const Wizard = ({ current, send, stepMachine, handleSubmit }) => {
       ) : null}
     </>
   )
+}
+
+Wizard.propTypes = {
+  current: PropTypes.object,
+  send: PropTypes.func,
+  stepMachine: PropTypes.object,
+  handleSubmit: PropTypes.func,
 }

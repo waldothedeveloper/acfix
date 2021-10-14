@@ -1,5 +1,5 @@
 import React from "react"
-
+import PropTypes from "prop-types"
 //
 export const Card = ({
   title,
@@ -10,8 +10,6 @@ export const Card = ({
   onPrev,
   context,
   children,
-  dataMachine,
-  dataState,
 }) => {
   const allowNext = state.can("NEXT")
 
@@ -80,4 +78,15 @@ export const Card = ({
       </form>
     </div>
   )
+}
+
+Card.propTypes = {
+  title: PropTypes.string,
+  subtitle: PropTypes.string,
+  onChange: PropTypes.func,
+  state: PropTypes.object,
+  submit: PropTypes.func,
+  onPrev: PropTypes.func,
+  context: PropTypes.object,
+  children: PropTypes.object,
 }

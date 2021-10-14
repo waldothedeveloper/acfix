@@ -1,4 +1,5 @@
 import React from "react"
+import PropTypes from "prop-types"
 
 export const Notes = ({ send, title, context }) => {
   return (
@@ -24,4 +25,10 @@ export const Notes = ({ send, title, context }) => {
       </div>
     </div>
   )
+}
+
+Notes.propTypes = {
+  send: PropTypes.func,
+  title: PropTypes.string,
+  context: PropTypes.object,
 }

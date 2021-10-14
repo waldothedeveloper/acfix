@@ -3,7 +3,7 @@ import { Link } from "gatsby"
 import { StaticImage } from "gatsby-plugin-image"
 import { ChevronRightIcon, StarIcon } from "@heroicons/react/solid"
 
-export const ThankYou = () => {
+const ThankYou = () => {
   return (
     <div className="bg-white pb-8 sm:pb-12 lg:pb-12">
       <div className="pt-8 overflow-hidden sm:pt-12 lg:relative lg:py-48">
@@ -132,3 +132,4 @@ export const ThankYou = () => {
     </div>
   )
 }
+export default ThankYou

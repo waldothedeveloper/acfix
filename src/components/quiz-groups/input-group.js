@@ -1,4 +1,5 @@
 import React from "react"
+import PropTypes from "prop-types"
 import { BadgeCheckIcon, ExclamationIcon } from "@heroicons/react/solid"
 import { classNames } from "../../utils/classNames"
 const errorClass =
@@ -135,4 +136,17 @@ export const InputGroup = ({
       )}
     </div>
   )
+}
+
+InputGroup.propTypes = {
+  send: PropTypes.func,
+  title: PropTypes.string,
+  id: PropTypes.number,
+  context: PropTypes.object,
+  subtitle: PropTypes.string,
+  type: PropTypes.string,
+  name: PropTypes.string,
+  input_id: PropTypes.string,
+  maxLength: PropTypes.number,
+  placeholder: PropTypes.string,
 }

@@ -2,6 +2,7 @@ import React from "react"
 import { RadioOptions } from "./radio-options"
 import { RadioGroup } from "@headlessui/react"
 import "../../styles/scroll.css"
+import PropTypes from "prop-types"
 
 export const RadioQuizGroup = ({ send, title, id, context }) => {
   return (
@@ -41,4 +42,11 @@ export const RadioQuizGroup = ({ send, title, id, context }) => {
       </div>
     </div>
   )
+}
+
+RadioQuizGroup.propTypes = {
+  send: PropTypes.func,
+  title: PropTypes.string,
+  id: PropTypes.number,
+  context: PropTypes.object,
 }

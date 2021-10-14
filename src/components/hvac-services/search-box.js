@@ -1,6 +1,7 @@
 import React from "react"
 import { connectSearchBox } from "react-instantsearch-dom"
 import { XIcon } from "@heroicons/react/solid"
+import PropTypes from "prop-types"
 //
 const SearchBox = ({ currentRefinement, refine }) => {
   return (
@@ -31,4 +32,8 @@ const SearchBox = ({ currentRefinement, refine }) => {
   )
 }
 
+SearchBox.propTypes = {
+  currentRefinement: PropTypes.string,
+  refine: PropTypes.func,
+}
 export const CustomSearchBox = connectSearchBox(SearchBox)
