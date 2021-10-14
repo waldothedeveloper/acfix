@@ -257,5 +257,5 @@ Wizard.propTypes = {
   current: PropTypes.object,
   send: PropTypes.func,
   stepMachine: PropTypes.object,
-  handleSubmit: PropTypes.func,
+  handleFetchToDB: PropTypes.func,
 }
