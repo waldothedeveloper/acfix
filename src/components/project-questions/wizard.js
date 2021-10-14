@@ -5,8 +5,51 @@ import { Card } from "./card"
 import { Notes } from "../quiz-groups/notes"
 import PropTypes from "prop-types"
 
-export const Wizard = ({ current, send, stepMachine, handleSubmit }) => {
+export const Wizard = ({ current, send, stepMachine, handleFetchToDB }) => {
   const stepContext = current.context
+
+  const handleChange = value => {
+    if (current.matches("one")) {
+      send("CONFIRM_TYPE_OF_PROJECT", { value })
+    }
+
+    if (current.matches("two")) {
+      send("EDIT_ZIPCODE", { value })
+    }
+
+    if (current.matches("three")) {
+      send("CONFIRM_EMERGENCY", { value })
+    }
+
+    if (current.matches("four")) {
+      send("CONFIRM_PROBLEM_NATURE", { value })
+    }
+
+    if (
+      current.matches("five") ||
+      current.matches("six") ||
+      current.matches("seven") ||
+      current.matches("eight") ||
+      current.matches("nine") ||
+      current.matches("ten") ||
+      current.matches("eleven") ||
+      current.matches("twelve") ||
+      current.matches("thirteen")
+    ) {
+      send("CHANGE", { value })
+    }
+  }
+
+  const handleSubmit = () => {
+    if (current.matches("thirteen")) {
+      send("NEXT")
+      handleFetchToDB()
+    }
+
+    return send("NEXT")
+  }
+
+  const handlePrevious = () => send("PREV")
 
   return (
     <>
@@ -15,9 +58,9 @@ export const Wizard = ({ current, send, stepMachine, handleSubmit }) => {
           dataMachine={stepMachine.id}
           dataState={current.toStrings().join(" ")}
           title="What type of project is it?"
-          onChange={value => send("CONFIRM_TYPE_OF_PROJECT", { value })}
-          submit={value => send("NEXT")}
-          onPrev={value => send("PREV")}
+          onChange={handleChange}
+          submit={handleSubmit}
+          onPrev={handlePrevious}
           context={stepContext}
           state={current}
         >
@@ -29,9 +72,9 @@ export const Wizard = ({ current, send, stepMachine, handleSubmit }) => {
           dataState={current.toStrings().join(" ")}
           title="Let's get you the closest HVAC tech."
           subtitle="Your project's Zipcode?"
-          onChange={value => send("EDIT_ZIPCODE", { value })}
-          submit={value => send("NEXT")}
-          onPrev={value => send("PREV")}
+          onChange={handleChange}
+          submit={handleSubmit}
+          onPrev={handlePrevious}
           state={current}
           context={stepContext}
         >
@@ -49,9 +92,9 @@ export const Wizard = ({ current, send, stepMachine, handleSubmit }) => {
           dataMachine={stepMachine.id}
           dataState={current.toStrings().join(" ")}
           title="Is this an emergency?"
-          onChange={value => send("CONFIRM_EMERGENCY", { value })}
-          submit={value => send("NEXT")}
-          onPrev={value => send("PREV")}
+          onChange={handleChange}
+          submit={handleSubmit}
+          onPrev={handlePrevious}
           state={current}
           context={stepContext}
         >
@@ -62,9 +105,9 @@ export const Wizard = ({ current, send, stepMachine, handleSubmit }) => {
           dataMachine={stepMachine.id}
           dataState={current.toStrings().join(" ")}
           title="What best describes the nature of the problem?"
-          submit={value => send("NEXT")}
-          onChange={value => send("CONFIRM_PROBLEM_NATURE", { value })}
-          onPrev={value => send("PREV")}
+          submit={handleSubmit}
+          onChange={handleChange}
+          onPrev={handlePrevious}
           state={current}
           context={stepContext}
         >
@@ -75,9 +118,9 @@ export const Wizard = ({ current, send, stepMachine, handleSubmit }) => {
           dataMachine={stepMachine.id}
           dataState={current.toStrings().join(" ")}
           title="How old is your current air conditioning system?"
-          submit={value => send("NEXT")}
-          onChange={value => send("CHANGE", { value })}
-          onPrev={value => send("PREV")}
+          submit={handleSubmit}
+          onChange={handleChange}
+          onPrev={handlePrevious}
           state={current}
           context={stepContext}
         >
@@ -88,9 +131,9 @@ export const Wizard = ({ current, send, stepMachine, handleSubmit }) => {
           dataMachine={stepMachine.id}
           dataState={current.toStrings().join(" ")}
           title="Choose the appropiate status for your project"
-          submit={value => send("NEXT")}
-          onChange={value => send("CHANGE", { value })}
-          onPrev={value => send("PREV")}
+          submit={handleSubmit}
+          onChange={handleChange}
+          onPrev={handlePrevious}
           state={current}
           context={stepContext}
         >
@@ -101,9 +144,9 @@ export const Wizard = ({ current, send, stepMachine, handleSubmit }) => {
           dataMachine={stepMachine.id}
           dataState={current.toStrings().join(" ")}
           title="Are you in the process of moving into or out of this home?"
-          submit={value => send("NEXT")}
-          onChange={value => send("CHANGE", { value })}
-          onPrev={value => send("PREV")}
+          submit={handleSubmit}
+          onChange={handleChange}
+          onPrev={handlePrevious}
           state={current}
           context={stepContext}
         >
@@ -114,9 +157,9 @@ export const Wizard = ({ current, send, stepMachine, handleSubmit }) => {
           dataMachine={stepMachine.id}
           dataState={current.toStrings().join(" ")}
           title="When would you like this request to be completed?"
-          submit={value => send("NEXT")}
-          onChange={value => send("CHANGE", { value })}
-          onPrev={value => send("PREV")}
+          submit={handleSubmit}
+          onChange={handleChange}
+          onPrev={handlePrevious}
           state={current}
           context={stepContext}
         >
@@ -127,9 +170,9 @@ export const Wizard = ({ current, send, stepMachine, handleSubmit }) => {
           dataMachine={stepMachine.id}
           dataState={current.toStrings().join(" ")}
           title="Is this request covered by an insurance claim?"
-          submit={value => send("NEXT")}
-          onChange={value => send("CHANGE", { value })}
-          onPrev={value => send("PREV")}
+          submit={handleSubmit}
+          onChange={handleChange}
+          onPrev={handlePrevious}
           state={current}
           context={stepContext}
         >
@@ -140,9 +183,9 @@ export const Wizard = ({ current, send, stepMachine, handleSubmit }) => {
           dataMachine={stepMachine.id}
           dataState={current.toStrings().join(" ")}
           title="Are you the owner or authorized to make property changes?"
-          submit={value => send("NEXT")}
-          onChange={value => send("CHANGE", { value })}
-          onPrev={value => send("PREV")}
+          submit={handleSubmit}
+          onChange={handleChange}
+          onPrev={handlePrevious}
           state={current}
           context={stepContext}
         >
@@ -153,9 +196,9 @@ export const Wizard = ({ current, send, stepMachine, handleSubmit }) => {
           dataMachine={stepMachine.id}
           dataState={current.toStrings().join(" ")}
           title="Please tell us a little about your project"
-          submit={value => send("NEXT")}
-          onChange={value => send("CHANGE", { value })}
-          onPrev={value => send("PREV")}
+          submit={handleSubmit}
+          onChange={handleChange}
+          onPrev={handlePrevious}
           state={current}
           context={stepContext}
         >
@@ -166,9 +209,9 @@ export const Wizard = ({ current, send, stepMachine, handleSubmit }) => {
           dataMachine={stepMachine.id}
           dataState={current.toStrings().join(" ")}
           title="What is your full name?"
-          submit={value => send("NEXT")}
-          onChange={value => send("CHANGE", { value })}
-          onPrev={value => send("PREV")}
+          submit={handleSubmit}
+          onChange={handleChange}
+          onPrev={handlePrevious}
           state={current}
           context={stepContext}
         >
@@ -187,12 +230,9 @@ export const Wizard = ({ current, send, stepMachine, handleSubmit }) => {
           dataState={current.toStrings().join(" ")}
           title="How may we contact you?"
           subtitle="What is your phone number?"
-          submit={value => {
-            send("NEXT")
-            handleSubmit()
-          }}
-          onChange={value => send("CHANGE", { value })}
-          onPrev={value => send("PREV")}
+          submit={handleSubmit}
+          onChange={handleChange}
+          onPrev={handlePrevious}
           state={current}
           context={stepContext}
         >

@@ -26,6 +26,8 @@ export const InputGroup = ({
 }) => {
   const { errorMessage } = context
 
+  const handleOnChange = event => send(event.target.value)
+
   const zip =
     id === 1 ? { error: errorMessage, address: context.address } : void 0
   const phone =
@@ -60,7 +62,7 @@ export const InputGroup = ({
           {subtitle}
         </label>
         <input
-          onChange={event => send(event.target.value)}
+          onChange={handleOnChange}
           value={
             id === 1
               ? context.zipcode

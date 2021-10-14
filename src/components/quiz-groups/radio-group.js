@@ -5,6 +5,8 @@ import "../../styles/scroll.css"
 import PropTypes from "prop-types"
 
 export const RadioQuizGroup = ({ send, title, id, context }) => {
+  const handleSendValue = val => send(val)
+
   return (
     <div className="w-full px-4 py-6">
       <div className="w-full max-w-md mx-auto">
@@ -30,9 +32,7 @@ export const RadioQuizGroup = ({ send, title, id, context }) => {
               ? context.owner_or_authorized_person
               : ""
           }
-          onChange={val => {
-            send(val)
-          }}
+          onChange={handleSendValue}
         >
           <RadioGroup.Label className="sr-only">{title}</RadioGroup.Label>
           <div className="scrollbar space-y-2 h-56 overflow-y-auto overflow-x-hidden pt-3 pb-8 px-3">

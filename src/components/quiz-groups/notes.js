@@ -2,6 +2,8 @@ import React from "react"
 import PropTypes from "prop-types"
 
 export const Notes = ({ send, title, context }) => {
+  const handleOnChange = event => send(event.target.value)
+
   return (
     <div>
       <label htmlFor="about_project" className="sr-only">
@@ -16,7 +18,7 @@ export const Notes = ({ send, title, context }) => {
           rows={3}
           className="block w-full focus:ring-white focus:border-gray-50 sm:text-sm border border-gray-700 rounded-md bg-transparent"
           value={context.project_notes || ""}
-          onChange={event => send(event.target.value)}
+          onChange={handleOnChange}
         />
         <p className="mt-2 text-sm text-gray-500">
           Let us know what are you looking for. ({context.project_notes?.length}{" "}
