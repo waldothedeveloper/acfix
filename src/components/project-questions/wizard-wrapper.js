@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useCallback } from "react"
 import { Wizard } from "./wizard"
 import { useMachine } from "@xstate/react"
 import { stepMachine } from "../machines/stepMachine"
@@ -8,7 +8,7 @@ import { navigate } from "gatsby"
 export const WizardWrapper = () => {
   const [current, send] = useMachine(stepMachine)
 
-  const handleFetchToDB = () => {
+  const handleFetchToDB = useCallback(() => {
     fetch(`/api/airtableDev`, {
       method: `POST`,
       headers: {
@@ -24,7 +24,7 @@ export const WizardWrapper = () => {
         navigate("/submission-error")
         // handle error
       })
-  }
+  }, [current])
 
   //
   return (

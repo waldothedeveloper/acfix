@@ -19,7 +19,7 @@ export const RadioOptions = ({ id }) => {
                     relative rounded-lg shadow-md px-5 py-4 cursor-pointer flex focus:outline-none`
       }
     >
-      {({ active, checked }) => (
+      {({ _, checked }) => (
         <>
           <div className="flex items-center justify-between w-full">
             <div className="flex items-center">
