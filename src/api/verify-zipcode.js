@@ -13,8 +13,8 @@ const verifyZipcode = async (req, res) => {
       return res.status(404).json({ message: "This endpoint requires a GET" })
     }
 
-    const result = await fetch(url).then(res => {
-      return res.json()
+    const result = await fetch(url).then(response => {
+      return response.json()
     })
 
     res.status(200).json(result)
