@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useCallback } from "react"
 import { RadioQuizGroup } from "../quiz-groups/radio-group"
 import { InputGroup } from "../quiz-groups/input-group"
 import { Card } from "./card"
@@ -8,48 +8,51 @@ import PropTypes from "prop-types"
 export const Wizard = ({ current, send, stepMachine, handleFetchToDB }) => {
   const stepContext = current.context
 
-  const handleChange = value => {
-    if (current.matches("one")) {
-      send("CONFIRM_TYPE_OF_PROJECT", { value })
-    }
+  const handleChange = useCallback(
+    value => {
+      if (current.matches("one")) {
+        send("CONFIRM_TYPE_OF_PROJECT", { value })
+      }
 
-    if (current.matches("two")) {
-      send("EDIT_ZIPCODE", { value })
-    }
+      if (current.matches("two")) {
+        send("EDIT_ZIPCODE", { value })
+      }
 
-    if (current.matches("three")) {
-      send("CONFIRM_EMERGENCY", { value })
-    }
+      if (current.matches("three")) {
+        send("CONFIRM_EMERGENCY", { value })
+      }
 
-    if (current.matches("four")) {
-      send("CONFIRM_PROBLEM_NATURE", { value })
-    }
+      if (current.matches("four")) {
+        send("CONFIRM_PROBLEM_NATURE", { value })
+      }
 
-    if (
-      current.matches("five") ||
-      current.matches("six") ||
-      current.matches("seven") ||
-      current.matches("eight") ||
-      current.matches("nine") ||
-      current.matches("ten") ||
-      current.matches("eleven") ||
-      current.matches("twelve") ||
-      current.matches("thirteen")
-    ) {
-      send("CHANGE", { value })
-    }
-  }
+      if (
+        current.matches("five") ||
+        current.matches("six") ||
+        current.matches("seven") ||
+        current.matches("eight") ||
+        current.matches("nine") ||
+        current.matches("ten") ||
+        current.matches("eleven") ||
+        current.matches("twelve") ||
+        current.matches("thirteen")
+      ) {
+        send("CHANGE", { value })
+      }
+    },
+    [current, send]
+  )
 
-  const handleSubmit = () => {
+  const handleSubmit = useCallback(() => {
     if (current.matches("thirteen")) {
       send("NEXT")
       handleFetchToDB()
     }
 
     return send("NEXT")
-  }
+  }, [current, handleFetchToDB, send])
 
-  const handlePrevious = () => send("PREV")
+  const handlePrevious = useCallback(() => send("PREV"), [send])
 
   return (
     <>

@@ -1,8 +1,8 @@
-import React from "react"
+import React, { useCallback } from "react"
 import PropTypes from "prop-types"
 
 export const Notes = ({ send, title, context }) => {
-  const handleOnChange = event => send(event.target.value)
+  const handleOnChange = useCallback(event => send(event.target.value), [send])
 
   return (
     <div>

@@ -1,11 +1,11 @@
-import React from "react"
+import React, { useCallback } from "react"
 import { RadioOptions } from "./radio-options"
 import { RadioGroup } from "@headlessui/react"
 import "../../styles/scroll.css"
 import PropTypes from "prop-types"
 
 export const RadioQuizGroup = ({ send, title, id, context }) => {
-  const handleSendValue = val => send(val)
+  const handleSendValue = useCallback(val => send(val), [send])
 
   return (
     <div className="w-full px-4 py-6">

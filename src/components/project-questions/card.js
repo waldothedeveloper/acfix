@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useCallback } from "react"
 import PropTypes from "prop-types"
 //
 export const Card = ({
@@ -13,16 +13,20 @@ export const Card = ({
 }) => {
   const allowNext = state.can("NEXT")
 
+  const handleSubmit = useCallback(
+    event => {
+      if (event) event.preventDefault()
+      submit()
+    },
+    [submit]
+  )
+
+  const handleClick = useCallback(() => onPrev(), [onPrev])
+
   //
   return (
     <div>
-      <form
-        className="w-full"
-        onSubmit={evt => {
-          evt.preventDefault()
-          submit()
-        }}
-      >
+      <form className="w-full" onSubmit={handleSubmit}>
         <div className="max-w-none md:max-w-3xl mx-auto text-center">
           <div className="w-full flex flex-col rounded-xl overflow-hidden px-4 md:px-16 py-8 backdrop-filter backdrop-blur-lg bg-white bg-opacity-75">
             <div className="h-16 flex-shrink-0">
@@ -43,7 +47,7 @@ export const Card = ({
                   {title !== "What type of project is it?" && (
                     <button
                       type="button"
-                      onClick={() => onPrev()}
+                      onClick={handleClick}
                       className="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-500 hover:bg-red-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
                     >
                       PREV

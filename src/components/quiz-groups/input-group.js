@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useCallback } from "react"
 import PropTypes from "prop-types"
 import { BadgeCheckIcon, ExclamationIcon } from "@heroicons/react/solid"
 import { classNames } from "../../utils/classNames"
@@ -26,7 +26,7 @@ export const InputGroup = ({
 }) => {
   const { errorMessage } = context
 
-  const handleOnChange = event => send(event.target.value)
+  const handleOnChange = useCallback(event => send(event.target.value), [send])
 
   const zip =
     id === 1 ? { error: errorMessage, address: context.address } : void 0
