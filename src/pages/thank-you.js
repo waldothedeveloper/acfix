@@ -77,7 +77,7 @@ const ThankYou = () => {
         <div className="sm:mx-auto sm:max-w-3xl sm:px-6">
           <div className="py-12 sm:relative sm:mt-12 sm:py-16 lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
             <div className="hidden sm:block">
-              <div className="absolute inset-y-0 left-1/2 w-screen bg-gray-50 rounded-l-3xl lg:left-80 lg:right-0 lg:w-full" />
+              <div className="absolute inset-y-0 left-1/2 w-screen bg-cyan-50 rounded-l-3xl lg:left-80 lg:right-0 lg:w-full" />
               <svg
                 className="absolute top-8 right-1/2 -mr-3 lg:m-0 lg:left-0"
                 width={404}
@@ -99,7 +99,7 @@ const ThankYou = () => {
                       y={0}
                       width={4}
                       height={4}
-                      className="text-gray-200"
+                      className="text-rose-400"
                       fill="currentColor"
                     />
                   </pattern>
@@ -119,7 +119,7 @@ const ThankYou = () => {
                   width: "100%",
                   objectPosition: "top",
                 }}
-                src="../../images/guy_smiling.jpg"
+                src="../images/guy-smiling-minified.jpg"
                 alt=""
                 placeholder="blurred"
                 layout="fullWidth"

@@ -2,27 +2,8 @@ import React from "react"
 import { useServiceAreas } from "../hooks/useServiceAreas"
 import { GatsbyImage } from "gatsby-plugin-image"
 
-const areas = [
-  {
-    source:
-      "https://images.unsplash.com/photo-1535498730771-e735b998cd64?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bWlhbWklMjBmbG9yaWRhfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
-    name: "Hialeah",
-  },
-  {
-    source:
-      "https://images.unsplash.com/photo-1506966953602-c20cc11f75e3?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8bWlhbWklMjBmbG9yaWRhfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
-    name: "Brickell",
-  },
-  {
-    source:
-      "https://images.unsplash.com/photo-1585188990562-c6428e37e790?ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8bWlhbWklMjBmbG9yaWRhfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
-    name: "Dade County",
-  },
-]
-
-export const ServingAreas = () => {
+const ServingAreas = () => {
   const data = useServiceAreas()
-  // console.log("data: ", data)
 
   //
   return (
@@ -64,3 +45,5 @@ export const ServingAreas = () => {
     </div>
   )
 }
+
+export default ServingAreas

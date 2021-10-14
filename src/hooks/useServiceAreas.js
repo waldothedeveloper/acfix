@@ -26,7 +26,6 @@ export const useServiceAreas = () => {
     currArea.node.name = area.node.name
       .replace(/_/g, " ")
       .replace(/areas/g, "")
-      .replace(/\s+$/, "")
       .toUpperCase()
 
     return currArea
