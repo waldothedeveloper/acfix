@@ -46,12 +46,9 @@ const handler = (req, res) => {
       ],
       (err, records) => {
         if (err) {
-          
           return
         }
-        records.forEach(function (record) {
-          
-        })
+        records.forEach(function (record) {})
       }
     )
   } catch (err) {

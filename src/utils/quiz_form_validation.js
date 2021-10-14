@@ -8,7 +8,6 @@ export const verifyZipcode = zip => {
       return data.results
     })
     .catch(err => {
-      
       return err
     })
 }
