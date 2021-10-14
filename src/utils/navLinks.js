@@ -1,3 +1,4 @@
+import React from "react"
 import {
   AnnotationIcon,
   ChatAlt2Icon,
