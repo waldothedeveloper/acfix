@@ -22,7 +22,7 @@ export const useServiceAreas = () => {
 
   const rawData = data?.allFile?.edges
   const newData = rawData.map(area => {
-    let currArea = area
+    const currArea = area
     currArea.node.name = area.node.name
       .replace(/_/g, " ")
       .replace(/areas/g, "")

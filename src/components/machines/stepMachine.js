@@ -453,8 +453,7 @@ export const stepMachine = createMachine(
         errorMessage: void 0,
       }),
       assignErrorMessageToContext: assign((context, event) => {
-        let _a
-        _a = event.data
+        const _a = event.data
 
         if (_a === null || _a === void 0) {
           return {

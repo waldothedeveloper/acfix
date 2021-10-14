@@ -106,8 +106,8 @@ export const useControlQuizSteps = quizValidate => {
   const handleAnswers = event => {
     if (quiz[activeStep].templateType === "zipcode") {
       setWaitForZipcodeValidation(true)
-      let value = event.target.value
-      let name = event.target.name
+      const value = event.target.value
+      const name = event.target.name
 
       //
       setResponses(prevRes => ({
@@ -117,8 +117,8 @@ export const useControlQuizSteps = quizValidate => {
     }
 
     if (quiz[activeStep].templateType === "info") {
-      let value = event.target.value
-      let name = event.target.name
+      const value = event.target.value
+      const name = event.target.name
       setResponses(prevRes => ({
         ...prevRes,
         [name]: value,
@@ -126,8 +126,8 @@ export const useControlQuizSteps = quizValidate => {
     }
 
     if (quiz[activeStep].templateType === "fullname") {
-      let value = event.target.value
-      let name = event.target.name
+      const value = event.target.value
+      const name = event.target.name
       setResponses(prevRes => ({
         ...prevRes,
         [name]: value,
@@ -135,8 +135,8 @@ export const useControlQuizSteps = quizValidate => {
     }
 
     if (quiz[activeStep].templateType === "phone_number") {
-      let value = event.target.value
-      let name = event.target.name
+      const value = event.target.value
+      const name = event.target.name
       setResponses(prevRes => ({
         ...prevRes,
         [name]: value,
