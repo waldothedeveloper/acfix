@@ -36,7 +36,7 @@ const Hits = ({ hits }) => {
           <div className="flex-1 min-w-0">
             <p className="font-medium text-lg">No Result Found.</p>
             <p className="font-base text-sm text-gray-500">
-              Try something like 'Install Air Conditioner'...
+              Try something like &apos;Install Air Conditioner&apos;...
             </p>
           </div>
         </div>

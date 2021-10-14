@@ -29,14 +29,14 @@ const SubmissionError = () => {
                   Errors are unanticipated
                 </h1>
                 <p className="mt-2 text-base text-gray-500">
-                  We're sorry. Our system encountered an unexpected error.
+                  We&apos;re sorry. Our system encountered an unexpected error.
                 </p>
                 <div className="mt-6">
                   <Link
                     to="/quiz-conversion"
                     className="text-base font-medium text-cyan-600 hover:text-cyan-500"
                   >
-                    Let's try again<span aria-hidden="true"> &rarr;</span>
+                    Let&apos;s try again<span aria-hidden="true"> &rarr;</span>
                   </Link>
                 </div>
               </div>

@@ -45,7 +45,7 @@ export const incentives = [
     ),
     title: (
       <p className={classNames("text-yellow-800", "ml-3 text-base font-bold")}>
-        We'll match you with a solution that fits your needs
+        We&apos;ll match you with a solution that fits your needs
       </p>
     ),
     description: (
