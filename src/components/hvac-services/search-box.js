@@ -2,7 +2,7 @@ import React from "react"
 import { connectSearchBox } from "react-instantsearch-dom"
 import { XIcon } from "@heroicons/react/solid"
 //
-const SearchBox = ({ currentRefinement, isSearchStalled, refine }) => {
+const SearchBox = ({ currentRefinement, refine }) => {
   return (
     <form noValidate role="search" onSubmit={e => e.preventDefault()}>
       <label
@@ -27,8 +27,6 @@ const SearchBox = ({ currentRefinement, isSearchStalled, refine }) => {
           <XIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
         </button>
       </div>
-
-      {isSearchStalled ? "My search is stalled" : ""}
     </form>
   )
 }

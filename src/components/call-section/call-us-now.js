@@ -36,7 +36,7 @@ const hoursOfOperation = [
 export const CallUsNow = () => {
   return (
     <div className="py-6 md:py-0 overflow-hidden">
-      <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 bg-yellow-50 rounded-tl-3xl rounded-br-3xl py-32 md:py-24 xl:py-0">
+      <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 bg-yellow-50 xl:rounded-tl-3xl xl:rounded-br-3xl py-32 md:py-24 xl:py-0">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 place-items-center">
           <div className="w-full px-3 md:pl-4 grid grid-cols-2 gap-6 md:gap-12 xl:grid-cols-none xl:gap-0 xl:p-12">
             <div className="w-full relative">
@@ -68,11 +68,11 @@ export const CallUsNow = () => {
                 alt=""
               />
             </div>
-            <div className="w-full pr-6 xl:hidden relative">
+            <div className="w-full xl:hidden relative">
               <div className="aspect-w-2 aspect-h-4">
                 <StaticImage
-                  className="h-full w-full rounded-tl-full rounded-tr-full rounded-br-full object-cover object-center shadow-sm"
-                  src="https://images.unsplash.com/photo-1586232880922-25f9b9695ecb?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8Y2FsbGluZ3xlbnwwfDF8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+                  className="rounded-tl-full rounded-tr-full rounded-br-full object-cover object-center"
+                  src="https://images.unsplash.com/photo-1621905252472-943afaa20e20?ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8NjJ8fHxlbnwwfHx8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
                   alt="ac fix client"
                   placeholder="blurred"
                   layout="constrained"
@@ -120,7 +120,7 @@ export const CallUsNow = () => {
             <div className="aspect-w-2 aspect-h-4">
               <StaticImage
                 className="h-full w-full rounded-tl-full rounded-tr-full rounded-br-full object-cover object-center shadow-sm"
-                src="https://images.unsplash.com/photo-1586232880922-25f9b9695ecb?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8Y2FsbGluZ3xlbnwwfDF8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+                src="https://images.unsplash.com/photo-1621905252472-943afaa20e20?ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8NjJ8fHxlbnwwfHx8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
                 alt="ac fix client"
                 placeholder="blurred"
                 layout="constrained"

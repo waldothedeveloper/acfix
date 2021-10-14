@@ -4,7 +4,7 @@ import { InputGroup } from "../quiz-groups/input-group"
 import { Card } from "./card"
 import { Notes } from "../quiz-groups/notes"
 
-export const Wizard = ({ current, send, stepMachine }) => {
+export const Wizard = ({ current, send, stepMachine, handleSubmit }) => {
   const stepContext = current.context
 
   return (
@@ -186,7 +186,10 @@ export const Wizard = ({ current, send, stepMachine }) => {
           dataState={current.toStrings().join(" ")}
           title="How may we contact you?"
           subtitle="What is your phone number?"
-          submit={value => send("NEXT")}
+          submit={value => {
+            send("NEXT")
+            handleSubmit()
+          }}
           onChange={value => send("CHANGE", { value })}
           onPrev={value => send("PREV")}
           state={current}

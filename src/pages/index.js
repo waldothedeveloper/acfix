@@ -19,7 +19,6 @@ const IndexPage = () => (
     <HvacCategories />
     <CallUsNow />
     {/* <CustomerTestimonials /> */}
-    {/* <PartnersDetail /> */}
   </Layout>
 )
 
