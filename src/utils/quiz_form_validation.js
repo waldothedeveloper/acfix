@@ -8,7 +8,7 @@ export const verifyZipcode = zip => {
       return data.results
     })
     .catch(err => {
-      console.log("err trying to verify zip code", err)
+      
       return err
     })
 }

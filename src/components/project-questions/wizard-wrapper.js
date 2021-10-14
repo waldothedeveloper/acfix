@@ -8,11 +8,11 @@ import { StaticImage } from "gatsby-plugin-image"
 
 export const WizardWrapper = () => {
   const [serverResponse, setServerResponse] = React.useState(``)
-  console.log("serverResponse: ", serverResponse)
+  
   const [current, send] = useMachine(stepMachine)
 
   const handleSubmit = async event => {
-    console.warn("is this shit submitting!????")
+    
     const response = await window
       .fetch(`/api/airtableDev`, {
         method: `POST`,
@@ -28,7 +28,7 @@ export const WizardWrapper = () => {
   // this clean the values after form is submitted
   useEffect(() => {
     if (serverResponse?.message === "Successfully submitted message") {
-      console.log("All data sent successfully to AirTable")
+      
     }
     return () => {
       setServerResponse(``)
