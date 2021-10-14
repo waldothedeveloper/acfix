@@ -17,7 +17,7 @@ export const CallToAction = () => {
               to="/quiz-conversion"
               className="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-cyan-600 hover:bg-cyan-700"
             >
-              It's free to try!
+              It&apos;s free to try!
             </Link>
             <p className="ml-1 mt-2 text-xs text-gray-400 font-semibold tracking-wide underline">
               No risk. No obligation

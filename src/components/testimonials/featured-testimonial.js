@@ -75,11 +75,11 @@ export const FeaturedTestimonial = () => {
             <blockquote className="mt-6 text-blueGray-800">
               <p className="text-xl font-medium">
                 I was completely satisfied with the AC service that I received
-                from one of AC FIX's partners. The technician was very
+                from one of AC FIX&apos;s partners. The technician was very
                 professional and explained everything he was doing to repair my
                 air conditioner. It is nice to know that there are still
-                companies out there like this one, who value their customers'
-                satisfaction above all else.
+                companies out there like this one, who value their
+                customers&apos; satisfaction above all else.
               </p>
               <footer className="mt-6">
                 <p className="flex flex-col font-semibold text-blueGray-600">

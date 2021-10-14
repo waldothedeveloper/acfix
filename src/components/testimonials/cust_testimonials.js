@@ -62,9 +62,9 @@ export const CustomerTestimonials = () => {
                 I was in desperate need of heating and cooling services in my
                 home. I called Mike, the owner of AC FIX, who came to my home
                 and fixed the problem for me. Before he left he showed me how to
-                fix it in case it happened again. He's very knowledgeable in his
-                field, has great customer service skills, and is very friendly.
-                Thanks Mike!
+                fix it in case it happened again. He&apos;s very knowledgeable
+                in his field, has great customer service skills, and is very
+                friendly. Thanks Mike!
               </p>
             </div>
           </div>
