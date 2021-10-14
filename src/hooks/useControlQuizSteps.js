@@ -29,7 +29,7 @@ export const useControlQuizSteps = quizValidate => {
         .fetch(`/api/verify-zipcode?query=${responses.zipcode_from_user}`)
         .then(res => res.json())
         .then(data => {
-          console.log("ZIP CODE VALID?", data)
+          
 
           if (data?.results[`${responses.zipcode_from_user}`]?.length > 0) {
             setWaitForZipcodeValidation(false)
