@@ -48,7 +48,7 @@ export const stepMachine = createMachine(
           },
           CONFIRM_TYPE_OF_PROJECT: {
             actions: [
-              assign((context, event) => {
+              assign((_, event) => {
                 if (event.type !== "CONFIRM_TYPE_OF_PROJECT") return {}
                 return {
                   type_of_project: event.value,
@@ -61,7 +61,7 @@ export const stepMachine = createMachine(
       //! # 2 zipcode
       two: {
         on: {
-          NEXT: { target: "three", cond: (ctx, event) => ctx.address },
+          NEXT: { target: "three", cond: (ctx, _) => ctx.address },
           PREV: "one",
           //! User can always change zip code in this state
           EDIT_ZIPCODE: {
@@ -79,10 +79,10 @@ export const stepMachine = createMachine(
           },
           validating: {
             invoke: {
-              src: (ctx, e) => verifyZipcode(ctx.zipcode),
+              src: (ctx, _) => verifyZipcode(ctx.zipcode),
               onDone: [
                 {
-                  cond: (ctx, event) =>
+                  cond: (_, event) =>
                     Object.keys(event.data).length > 0 ?? false,
                   actions: "validateZipCodeAndSaveToContext",
                   target: "valid",
@@ -133,7 +133,7 @@ export const stepMachine = createMachine(
           PREV: "two",
           CONFIRM_EMERGENCY: {
             actions: [
-              assign((context, event) => {
+              assign((_, event) => {
                 if (event.type !== "CONFIRM_EMERGENCY") return {}
                 return {
                   emergency: event.value,
@@ -148,7 +148,7 @@ export const stepMachine = createMachine(
         on: {
           CONFIRM_PROBLEM_NATURE: {
             actions: [
-              assign((context, event) => {
+              assign((_, event) => {
                 if (event.type !== "CONFIRM_PROBLEM_NATURE") return {}
                 return {
                   nature_of_problem: event.value,
@@ -172,7 +172,7 @@ export const stepMachine = createMachine(
         on: {
           CHANGE: {
             actions: [
-              assign((context, event) => {
+              assign((_, event) => {
                 if (event.type !== "CHANGE") return {}
                 return {
                   ac_unit_age: event.value,
@@ -196,7 +196,7 @@ export const stepMachine = createMachine(
         on: {
           CHANGE: {
             actions: [
-              assign((context, event) => {
+              assign((_, event) => {
                 if (event.type !== "CHANGE") return {}
                 return {
                   project_status: event.value,
@@ -220,7 +220,7 @@ export const stepMachine = createMachine(
         on: {
           CHANGE: {
             actions: [
-              assign((context, event) => {
+              assign((_, event) => {
                 if (event.type !== "CHANGE") return {}
                 return {
                   moving: event.value,
@@ -242,7 +242,7 @@ export const stepMachine = createMachine(
         on: {
           CHANGE: {
             actions: [
-              assign((context, event) => {
+              assign((_, event) => {
                 if (event.type !== "CHANGE") return {}
                 return {
                   project_deadline: event.value,
@@ -266,7 +266,7 @@ export const stepMachine = createMachine(
         on: {
           CHANGE: {
             actions: [
-              assign((context, event) => {
+              assign((_, event) => {
                 if (event.type !== "CHANGE") return {}
                 return {
                   covered_by_insurance: event.value,
@@ -291,7 +291,7 @@ export const stepMachine = createMachine(
         on: {
           CHANGE: {
             actions: [
-              assign((context, event) => {
+              assign((_, event) => {
                 if (event.type !== "CHANGE") return {}
                 return {
                   owner_or_authorized_person: event.value,
@@ -316,7 +316,7 @@ export const stepMachine = createMachine(
         on: {
           CHANGE: {
             actions: [
-              assign((context, event) => {
+              assign((_, event) => {
                 if (event.type !== "CHANGE") return {}
                 return {
                   project_notes: event.value,
@@ -338,11 +338,11 @@ export const stepMachine = createMachine(
             always: [
               {
                 target: "completeTask",
-                cond: (ctx, event) => ctx.fullname.length > 0,
+                cond: (ctx, _) => ctx.fullname.length > 0,
               },
               {
                 target: "incompleteTask",
-                cond: (ctx, event) => ctx.fullname === "",
+                cond: (ctx, _) => ctx.fullname === "",
               },
             ],
           },
@@ -384,7 +384,7 @@ export const stepMachine = createMachine(
           },
           NEXT: {
             target: "fourteen",
-            cond: (ctx, event) => {
+            cond: (ctx, _) => {
               return ctx.phoneRegex
             },
           },
@@ -395,13 +395,13 @@ export const stepMachine = createMachine(
           idle: {
             always: {
               target: "validating",
-              cond: (ctx, event) => ctx.phone.length > 2,
+              cond: (ctx, _) => ctx.phone.length > 2,
             },
           },
           validating: {
             always: {
               target: "valid",
-              cond: (ctx, event) => validatePhoneNumber(ctx.phone),
+              cond: (ctx, _) => validatePhoneNumber(ctx.phone),
             },
           },
           valid: {
@@ -423,7 +423,7 @@ export const stepMachine = createMachine(
   },
   {
     actions: {
-      showInvalidPhoneNumberErrorMessage: assign((ctx, event) => {
+      showInvalidPhoneNumberErrorMessage: assign((ctx, _) => {
         return ctx.phone.length > 0
           ? {
               phoneRegex: void 0,
@@ -434,14 +434,14 @@ export const stepMachine = createMachine(
               errorMessage: "",
             }
       }),
-      editPhoneNumber: assign((context, event) => {
+      editPhoneNumber: assign((_, event) => {
         if (event.type !== "CHANGE") return {}
 
         return {
           phone: formatPhoneNumber(event.value),
         }
       }),
-      editFullname: assign((context, event) => {
+      editFullname: assign((_, event) => {
         if (event.type !== "CHANGE") return {}
 
         return {
@@ -452,7 +452,7 @@ export const stepMachine = createMachine(
       clearErrorMessage: assign({
         errorMessage: void 0,
       }),
-      assignErrorMessageToContext: assign((context, event) => {
+      assignErrorMessageToContext: assign((_, event) => {
         const _a = event.data
 
         if (_a === null || _a === void 0) {
@@ -471,7 +471,7 @@ export const stepMachine = createMachine(
           errorMessage: "An unknown error occurred",
         }
       }),
-      assignZipCodeToContext: assign((ctx, event) => {
+      assignZipCodeToContext: assign((_, event) => {
         return {
           zipcode: event.value,
           verifiedAddress: "pending",
@@ -493,7 +493,7 @@ export const stepMachine = createMachine(
     },
 
     guards: {
-      regexZipCode: (ctx, event) =>
+      regexZipCode: ctx =>
         ctx.verifiedAddress !== void 0 && zipCodeRegex.test(ctx.zipcode),
     },
 

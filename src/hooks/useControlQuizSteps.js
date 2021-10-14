@@ -24,9 +24,8 @@ export const useControlQuizSteps = quizValidate => {
 
   // verify zipcode
   useEffect(() => {
-    const verifyZIPcode = async () => {
-      await window
-        .fetch(`/api/verify-zipcode?query=${responses.zipcode_from_user}`)
+    const verifyZIPcode = () => {
+      fetch(`/api/verify-zipcode?query=${responses.zipcode_from_user}`)
         .then(res => res.json())
         .then(data => {
           if (data?.results[`${responses.zipcode_from_user}`]?.length > 0) {
@@ -45,8 +44,7 @@ export const useControlQuizSteps = quizValidate => {
             }))
           }
         })
-        .catch(err => {
-          // console.log("err trying to verify zip code", err)
+        .catch(() => {
           setWaitForZipcodeValidation(false)
         })
     }
