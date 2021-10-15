@@ -10,19 +10,21 @@ import { HvacCategories } from "../components/hvac-services/hvac-categories"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 
-const IndexPage = () => (
-  <Layout>
-    <Seo title="Home" />
-    <Hero />
-    <FeaturedTestimonial />
-    <HowItWorks />
-    <CallToAction />
-    <HvacCategories />
-    <CallUsNow />
-    {/* <CustomerTestimonials /> */}
-  </Layout>
-)
-
+const IndexPage = () => {
+  //
+  return (
+    <Layout>
+      <Seo title="Home" />
+      <Hero />
+      <FeaturedTestimonial />
+      <HowItWorks />
+      <CallToAction />
+      <HvacCategories />
+      <CallUsNow />
+      {/* <CustomerTestimonials /> */}
+    </Layout>
+  )
+}
 export default IndexPage
 
 // refer get $50 => https://share.shutterstock.com/originotesgreetingcards
