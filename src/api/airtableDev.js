@@ -50,14 +50,15 @@ const handler = (req, res) => {
             .status(500)
             .json({ message: "Error trying to save the lead to the database" })
         }
-        // records.forEach(function (record) {})
+        return records
       }
     )
 
     return res.status(200).json({ message: "Lead saved on database" })
   } catch (err) {
-    // console.log(err)
-    res.status(500).json({ message: "There has been a big error.", error: err })
+    return res
+      .status(500)
+      .json({ message: "There has been a big error.", error: err })
   }
 }
 

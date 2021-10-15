@@ -1,7 +1,6 @@
 import React from "react"
-import { connectHits } from "react-instantsearch-dom"
+import { connectHits, Configure } from "react-instantsearch-dom"
 import { Link } from "gatsby"
-import { Configure } from "react-instantsearch-dom"
 import PropTypes from "prop-types"
 
 //
@@ -46,6 +45,6 @@ const Hits = ({ hits }) => {
 }
 
 Hits.propTypes = {
-  hits: PropTypes.array,
+  hits: PropTypes.objectOf(PropTypes.object()),
 }
 export const CustomHits = connectHits(Hits)

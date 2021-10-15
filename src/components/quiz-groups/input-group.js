@@ -1,14 +1,8 @@
-import React, { useCallback } from "react"
-import PropTypes from "prop-types"
 import { BadgeCheckIcon, ExclamationIcon } from "@heroicons/react/solid"
-import { classNames } from "../../utils/classNames"
-const errorClass =
-  "border border-red-300 rounded-lg px-3 py-2 shadow-sm focus-within:ring-1 focus-within:ring-red-600 focus-within:border-red-600"
-const successClass =
-  "border border-4 border-cyan-500 rounded-lg px-3 py-2 shadow-sm focus-within:ring-1 focus-within:ring-cyan-600 focus-within:border-cyan-600"
+import React, { useCallback } from "react"
 
-const idleClass =
-  "border border-gray-700 rounded-lg px-3 py-2 shadow-sm focus-within:ring-1 focus-within:ring-gray-600 focus-within:border-gray-600"
+import PropTypes from "prop-types"
+import { classNames } from "../../utils/classNames"
 
 // TODO: USE THE ID PROP HERE TO SHOW WHEN VALID ADDRESS SHOULD SHOW, AND REPEAT THE SAME FOR FULL NAME (SO THAT ADDRESS IS NOT SHOWN), AND PHONE NUMBER
 
@@ -40,14 +34,14 @@ export const InputGroup = ({
       <div
         className={classNames(
           zip && zip.error
-            ? errorClass
+            ? "errorClass"
             : zip && zip.address
-            ? successClass
+            ? "successClass"
             : phone && phone.error
-            ? errorClass
+            ? "errorClass"
             : phone && phone.reg
-            ? successClass
-            : idleClass,
+            ? "successClass"
+            : "idleClass",
           "relative text-left mt-6"
         )}
       >

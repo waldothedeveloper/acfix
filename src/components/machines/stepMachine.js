@@ -1,10 +1,11 @@
-import { createMachine, assign } from "xstate"
+import { assign, createMachine } from "xstate"
 import {
-  zipCodeRegex,
-  verifyZipcode,
   formatPhoneNumber,
   validatePhoneNumber,
+  verifyZipcode,
+  zipCodeRegex,
 } from "../../utils/quiz_form_validation"
+
 import { quiz } from "../project-questions/quiz"
 
 //
@@ -489,6 +490,7 @@ export const stepMachine = createMachine(
             },
           }
         }
+        return null
       }),
     },
 
@@ -497,6 +499,6 @@ export const stepMachine = createMachine(
         ctx.verifiedAddress !== void 0 && zipCodeRegex.test(ctx.zipcode),
     },
 
-    // activities, guards, delays, etc.
+    // activities, guards, delays can go below here, etc.
   }
 )
