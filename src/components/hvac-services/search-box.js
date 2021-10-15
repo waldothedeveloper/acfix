@@ -3,6 +3,7 @@ import React, { useCallback } from "react"
 import PropTypes from "prop-types"
 import { XIcon } from "@heroicons/react/solid"
 import { connectSearchBox } from "react-instantsearch-dom"
+
 //
 const SearchBox = ({ currentRefinement, refine }) => {
   //
@@ -36,6 +37,7 @@ const SearchBox = ({ currentRefinement, refine }) => {
             className="shadow-sm focus:ring-cyan-500 focus:border-cyan-500 block w-full pr-12 sm:text-sm border-gray-300 rounded-md"
           />
           <button
+            type="button"
             onClick={handleOnClick}
             className="absolute inset-y-0 right-0 pr-3 flex items-center"
           >
