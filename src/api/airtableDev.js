@@ -3,8 +3,14 @@ const base = new Airtable({ apiKey: process.env.AIRTABLE_KEY }).base(
   process.env.AIRTABLE_BASE_ID
 )
 
+const ENV = process.env.NODE_ENV
+
 //
 const handler = (req, res) => {
+  // this will determine the base prod vs dev
+  const baseName = ENV === "development" ? "ACFIX-dev" : "ACFIX-production"
+
+  //
   try {
     if (req.method !== "POST") {
       return res.status(404).json({ message: "This endpoint requires a POST" })
@@ -16,11 +22,11 @@ const handler = (req, res) => {
       return res.status(500).json({ error: "There isn't any data." })
     }
 
-    base("ACFIX-dev").create(
+    base(baseName).create(
       [
         {
           fields: {
-            "Lead-Date": "2021-10-13T22:27:00.000Z",
+            "Lead-Date": new Date(),
             "What type of project is it?": data.type_of_project,
             "Your project's ZIP code?": `city: ${data.address.city}\n state: ${data.address.state}\n zipcode: ${data.address.postal_code}\n`,
             "Is this an emergency?": data.emergency,
